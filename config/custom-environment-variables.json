@@ -1,0 +1,10 @@
+{
+  "devServer": {
+    "host": "DEV_SERVER_HOST",
+    "port": "DEV_SERVER_PORT"
+  },
+  "bundleAnalyzer": {
+    "host": "ANALYZER_HOST",
+    "port": "ANALYZER_PORT"
+  }
+}
