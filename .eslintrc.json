@@ -1,5 +1,5 @@
 {
-  "parser": "vue-eslint-parser",
+  "parser": "babel-eslint",
   "rules": {
     "semi": 0,
     "quotes": [
@@ -326,7 +326,6 @@
     ]
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:vue/strongly-recommended"
+    "eslint:recommended"
   ]
 }

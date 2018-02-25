@@ -25,25 +25,28 @@ module.exports = {
     },
     module: {
         rules: [{
+            test: /\.html$/,
+            loader: 'vue-template-loader',
+            // We don't want to pass `src/index.html` file to this loader.
+            exclude: /index.html/,
+        }, {
             enforce: 'pre',
             test: /\.(js|vue)$/,
             exclude: /node_modules/,
             loader: 'eslint-loader',
-        }, {
-            test: /\.vue$/,
-            exclude: /node_modules/,
-            include: path.join(__dirname, 'src'),
-            use: 'vue-loader',
         }, {
             test: /\.js?$/,
             exclude: /node_modules/,
             include: path.join(__dirname, 'src'),
             use: 'babel-loader',
         }, {
+            test: /\.css$/,
+            use: [ 'style-loader', 'css-loader' ]
+        }, {
             test: /\.json$/,
             use: 'json-loader'
         }, {
-            test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
+            test: /\.(png|jp(e?)g|gif|svg|eot|ttf|woff|woff2)$/,
             loader: 'url-loader',
             options: {
                 limit: 10000
@@ -53,7 +56,7 @@ module.exports = {
     plugins: [
         // see https://webpack.js.org/plugins/
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src', 'index.html'),
+            template: path.join(__dirname, 'index.html'),
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
