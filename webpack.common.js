@@ -29,12 +29,12 @@ module.exports = {
             loader: 'vue-template-loader',
             // We don't want to pass `src/index.html` file to this loader.
             exclude: /index.html/,
-        }, {
+        }, /*{
             enforce: 'pre',
             test: /\.(js|vue)$/,
             exclude: /node_modules/,
             loader: 'eslint-loader',
-        }, {
+        },*/ {
             test: /\.js?$/,
             exclude: /node_modules/,
             include: path.join(__dirname, 'src'),
@@ -42,6 +42,15 @@ module.exports = {
         }, {
             test: /\.css$/,
             use: [ 'style-loader', 'css-loader' ]
+        }, {
+            test: /\.scss$/,
+            use: [{
+                loader: 'style-loader' // creates style nodes from JS strings
+            }, {
+                loader: 'css-loader' // translates CSS into CommonJS
+            }, {
+                loader: 'sass-loader' // compiles Sass to CSS
+            }]
         }, {
             test: /\.json$/,
             use: 'json-loader'

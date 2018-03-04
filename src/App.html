@@ -1,4 +1,15 @@
-<div id="app">
-    <img :src="require('./images/logo.png')" />
-    <HelloWorld />
-</div>
+<v-app>
+    <v-navigation-drawer app>
+        <img :src="require('./images/logo.png')" />
+    </v-navigation-drawer>
+
+    <action-bar />
+
+    <v-text-field
+        name="input-1"
+        label="Label Text"
+        id="testing"
+    />
+
+    <v-footer app />
+</v-app>

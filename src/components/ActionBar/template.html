@@ -1,0 +1,8 @@
+<v-toolbar app>
+    <v-text-field
+            :value="todoName"
+            label="Todo name"
+            @input="updateTodoName"
+    />
+    <v-btn @click="addTodo" color="success">Add</v-btn>
+</v-toolbar>

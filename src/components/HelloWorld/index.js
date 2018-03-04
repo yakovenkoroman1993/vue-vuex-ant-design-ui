@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import Template from './template.html';
-import './styles.css';
 
 @Template
 @Component
