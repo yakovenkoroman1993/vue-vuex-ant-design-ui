@@ -1,27 +1,27 @@
-let state = {
-    todoName: '1232'
+let defaultState = {
+    name: '',
+    id: Date.now(),
+    completed: false,
+    reserved: true,
 };
 
-let getters = {
-    todoName: (state) => state.todoName
-};
+let getters = {};
 
-let actions = {
-};
+let actions = {};
 
 let mutations = {
-    updateForm(state, form) {
-        debugger;
-        state = {
-            ...state,
-            ...form
-        };
+    onUpdate(state, patch) {
+        Object.keys(patch).reduce((result, key) => {
+            result[key] = patch[key];
+            return result;
+        }, state);
     }
 };
 
 export default {
-    state,
+    namespaced: true,
+    state: defaultState,
     getters,
     actions,
-    mutations
+    mutations,
 }

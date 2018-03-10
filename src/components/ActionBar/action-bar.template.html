@@ -1,0 +1,50 @@
+<v-card class="elevation-12">
+    <v-toolbar dark color="primary">
+        <v-toolbar-title>Todo Panel</v-toolbar-title>
+        <v-spacer />
+        <v-tooltip bottom>
+            <v-btn
+                @mouseover="onArrowButtonMouseOver"
+                @mouseleave="onArrowButtonMouseLeave"
+                slot="activator"
+                color="darken-2"
+                dark
+                icon
+            >
+                <span v-if="!arrowButtonHover">Total {{total}}</span>
+                <v-icon dark v-if="arrowButtonHover">arrow_right</v-icon>
+            </v-btn>
+            <span>Go to list</span>
+        </v-tooltip>
+    </v-toolbar>
+    <v-card-text v-if="isLoading" >
+        <v-flex layout justify-center>
+            <v-progress-circular indeterminate :size="50" color="primary" />
+        </v-flex>
+    </v-card-text>
+    <v-card-text v-if="!isLoading">
+        <v-form>
+            <v-text-field
+                :value="name"
+                label="Name"
+                name="name"
+                @input.native="onTextFieldUpdate"
+            />
+        </v-form>
+    </v-card-text>
+    <v-card-actions>
+        <v-flex layout class="pl-2">
+            <v-switch
+                v-if="!isLoading"
+                label="Reserved"
+                v-model="reserved"
+            />
+            <v-switch
+                v-if="!isLoading"
+                label="Completed"
+                v-model="completed"
+            />
+            <v-btn :disabled="isLoading" color="primary" @click="onAdd">Add</v-btn>
+        </v-flex>
+    </v-card-actions>
+</v-card>
