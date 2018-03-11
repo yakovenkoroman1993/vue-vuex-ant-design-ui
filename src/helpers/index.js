@@ -1,12 +1,13 @@
-export function vuexify(source, stateName, mutationName) {
+export function vuexify(path, mutation) {
+    let [source, state] = path.split('/');
     return {
-        [stateName]: {
+        [state]: {
             get() {
-                return this.$store.state[source][stateName];
+                return this.$store.state[source][state];
             },
             set(value) {
-                this.$store.commit(`${source}/${mutationName}`, {
-                    [stateName]: value
+                this.$store.commit(`${source}/${mutation}`, {
+                    [state]: value
                 })
             }
         },

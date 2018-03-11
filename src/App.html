@@ -4,15 +4,14 @@
     <v-content>
         <v-container fluid fill-height>
             <v-layout align-center justify-center>
-                <!--<v-flex xs12 sm8 md4>
-                    <v-flex xs12 layout justify-center>
-                        <v-avatar tile="true" :size="120">
+                <v-flex xs12 sm8 md4>
+                    <router-view />
+
+                    <v-flex d-flex>
+                        <v-avatar :tile="true" :size="50">
                             <img :src="require('./images/logo.png')" />
                         </v-avatar>
                     </v-flex>
-                </v-flex>-->
-                <v-flex xs12 sm8 md4>
-                    <action-bar />
                 </v-flex>
             </v-layout>
         </v-container>

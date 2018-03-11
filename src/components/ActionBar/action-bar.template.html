@@ -8,11 +8,17 @@
                 @mouseleave="onArrowButtonMouseLeave"
                 slot="activator"
                 color="darken-2"
+                @click="goToTodoList"
                 dark
                 icon
             >
                 <span v-if="!arrowButtonHover">Total {{total}}</span>
-                <v-icon dark v-if="arrowButtonHover">arrow_right</v-icon>
+                <v-icon
+                    v-if="arrowButtonHover"
+                    dark
+                >
+                    {{'arrow_forward'}}
+                </v-icon>
             </v-btn>
             <span>Go to list</span>
         </v-tooltip>

@@ -2,7 +2,6 @@ import Vue from 'vue';
 import {mapState} from 'vuex';
 import Component from 'vue-class-component';
 import Template from './action-bar.template.html';
-import './action-bar.styles.scss';
 import {mapMutations, mapActions, mapGetters } from 'vuex';
 import {vuexify} from '../../helpers';
 
@@ -20,24 +19,8 @@ import {vuexify} from '../../helpers';
         ...mapGetters('todosInfo', [
             'total'
         ]),
-        ...vuexify('todoForm', 'completed', 'onUpdate'),
-        ...vuexify('todoForm', 'reserved', 'onUpdate'),
-        // completed: {
-        //     get() {
-        //         return this.$store.state.todoForm.completed;
-        //     },
-        //     set(completed) {
-        //         this.$store.commit('todoForm/onUpdate', {completed})
-        //     }
-        // },
-        // reserved: {
-        //     get() {
-        //         return this.$store.state.todoForm.reserved;
-        //     },
-        //     set(reserved) {
-        //         this.$store.commit('todoForm/onUpdate', {reserved})
-        //     }
-        // }
+        ...vuexify('todoForm/completed', 'onUpdate'),
+        ...vuexify('todoForm/reserved', 'onUpdate'),
     },
     methods: {
         ...mapMutations('todoForm', {
@@ -57,5 +40,10 @@ export default class extends Vue {
     }
     onArrowButtonMouseLeave() {
         this.arrowButtonHover = false;
+    }
+    goToTodoList() {
+        this.$router.push({
+            name: 'todoListRoute'
+        })
     }
 }
