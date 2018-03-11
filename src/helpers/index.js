@@ -13,3 +13,7 @@ export function vuexify(path, mutation) {
         },
     };
 }
+
+export function generateId() {
+    return (Date.now() % Math.random()).toString().replace('.', '');
+}

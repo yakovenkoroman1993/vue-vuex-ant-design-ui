@@ -1,6 +1,9 @@
+export let types = {
+    UPDATE_FORM: 'onUpdate'
+};
+
 let defaultState = {
     name: '',
-    id: Date.now(),
     completed: false,
     reserved: true,
 };
@@ -10,11 +13,10 @@ let getters = {};
 let actions = {};
 
 let mutations = {
-    onUpdate(state, patch) {
-        Object.keys(patch).reduce((result, key) => {
-            result[key] = patch[key];
-            return result;
-        }, state);
+    [types.UPDATE_FORM](state, {...patch}) {
+        Object.keys(patch).forEach((key) => {
+            state[key] = patch[key];
+        });
     }
 };
 

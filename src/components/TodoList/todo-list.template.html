@@ -12,7 +12,11 @@
         <v-spacer />
     </v-toolbar>
     <v-list two-line>
-        <v-list-tile avatar v-for="(todo, i) in todos" :key="todo.name" @click="">
+        <v-list-tile
+            :key="todo.name"
+            v-for="(todo, i) in todos"
+            @click="onTodoListItemClick(todo)"
+        >
             <v-list-tile-action>
                 <v-icon v-if="todo.completed" color="pink">star</v-icon>
                 <v-icon v-else="todo.completed" color="pink">star_border</v-icon>

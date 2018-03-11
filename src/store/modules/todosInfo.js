@@ -1,10 +1,18 @@
+import {generateId} from '../../helpers';
+
+export let types = {
+    ADD_TODO: 'onAdd',
+    TOGGLE_LOADING: 'onLoadingToggle',
+    UPDATE_TODO: 'onTodoUpdate'
+};
+
 let defaultState = {
     items: [{
-        id: Date.now(),
+        id: generateId(),
         name: 'Todo 1',
         completed: false
     }, {
-        id: Date.now(),
+        id: generateId(),
         name: 'Todo 2',
         completed: false
     }],
@@ -19,21 +27,39 @@ let getters = {
 
 let actions = {
     onAdd({commit, rootState}) {
-        commit('onLoadingToggle', {enabled: true});
+        commit('onLoadingToggle', true);
         // as async request
         setTimeout(() => {
-            commit('onLoadingToggle', {enabled: false});
-            commit('onAdd', rootState.todoForm);
-        }, 2000);
+            commit('onLoadingToggle', false);
+            commit('onAdd', {
+                id: generateId(),
+                ...rootState.todoForm,
+            });
+        }, 500);
+    },
+    onTodoUpdate({commit}, nextTodo) {
+        commit('onTodoUpdate', nextTodo);
     }
 };
 
 let mutations = {
-    onAdd(state, todo) {
+    [types.ADD_TODO](state, todo) {
         state.items.push(todo);
     },
-    onLoadingToggle(state, {enabled}) {
+    [types.TOGGLE_LOADING](state, enabled) {
         state.isLoading = enabled;
+    },
+    onTodoUpdate(state, nextTodo) {
+        let {id} = nextTodo;
+        state.items = state.items.map((todo) => {
+            if (todo.id === id) {
+                return {
+                    ...todo,
+                    ...nextTodo
+                };
+            }
+            return todo;
+        });
     }
 };
 

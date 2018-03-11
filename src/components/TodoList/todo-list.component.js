@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {mapState} from 'vuex';
+import {mapState, mapActions} from 'vuex';
 import Component from 'vue-class-component';
 import Template from './todo-list.template.html';
 
@@ -9,6 +9,16 @@ import Template from './todo-list.template.html';
     computed: {
         ...mapState('todosInfo', {
             todos: 'items'
+        })
+    },
+    methods: {
+        ...mapActions('todosInfo', {
+            onTodoListItemClick(dispatch, todo) {
+                dispatch('onTodoUpdate', {
+                    ...todo,
+                    completed: !todo.completed
+                });
+            }
         })
     }
 })
