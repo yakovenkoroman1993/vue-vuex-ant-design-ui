@@ -4,11 +4,11 @@
         <v-spacer />
         <v-tooltip bottom>
             <v-btn
-                @mouseover="onArrowButtonMouseOver"
-                @mouseleave="onArrowButtonMouseLeave"
+                @mouseover="handleArrowButtonMouseOver"
+                @mouseleave="handleArrowButtonMouseLeave"
                 slot="activator"
                 color="darken-2"
-                @click="goToTodoList"
+                @click="handleNavigationToTodoList"
                 dark
                 icon
             >
@@ -23,34 +23,27 @@
             <span>Go to list</span>
         </v-tooltip>
     </v-toolbar>
-    <v-card-text v-if="isLoading" >
-        <v-flex layout justify-center>
-            <v-progress-circular indeterminate :size="50" color="primary" />
-        </v-flex>
-    </v-card-text>
-    <v-card-text v-if="!isLoading">
+    <v-card-text>
         <v-form>
             <v-text-field
                 :value="name"
                 label="Name"
                 name="name"
-                @input.native="onTextFieldUpdate"
+                @input.native="handleTextFieldUpdate"
             />
         </v-form>
     </v-card-text>
     <v-card-actions>
         <v-flex layout class="pl-2">
             <v-switch
-                v-if="!isLoading"
                 label="Reserved"
                 v-model="reserved"
             />
             <v-switch
-                v-if="!isLoading"
                 label="Completed"
                 v-model="completed"
             />
-            <v-btn :disabled="isLoading" color="primary" @click="onAdd">Add</v-btn>
+            <v-btn color="primary" @click="handleTodoCreate">Add</v-btn>
         </v-flex>
     </v-card-actions>
 </v-card>

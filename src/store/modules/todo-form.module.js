@@ -1,6 +1,5 @@
-export let types = {
-    UPDATE_FORM: 'onUpdate'
-};
+import * as MutationsHelper from '../../helpers/mutations.helper';
+import {TODO_FORM} from '../types';
 
 let defaultState = {
     name: '',
@@ -13,11 +12,7 @@ let getters = {};
 let actions = {};
 
 let mutations = {
-    [types.UPDATE_FORM](state, {...patch}) {
-        Object.keys(patch).forEach((key) => {
-            state[key] = patch[key];
-        });
-    }
+    [TODO_FORM.UPDATE]: MutationsHelper.assignToState
 };
 
 export default {

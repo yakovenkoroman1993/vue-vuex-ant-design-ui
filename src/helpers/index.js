@@ -17,3 +17,15 @@ export function vuexify(path, mutation) {
 export function generateId() {
     return (Date.now() % Math.random()).toString().replace('.', '');
 }
+
+export function makeRequestAction(requestActionTypes, {
+    request = Function(),
+    success = Function(),
+    failure = Function(),
+} = {}) {
+    return {
+        [requestActionTypes.REQUEST]: request,
+        [requestActionTypes.SUCCESS]: success,
+        [requestActionTypes.FAILURE]: failure,
+    };
+}

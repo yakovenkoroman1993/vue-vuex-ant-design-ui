@@ -1,0 +1,42 @@
+<v-card class="elevation-12">
+    <v-toolbar>
+        <v-toolbar-title>Sign in</v-toolbar-title>
+        <v-spacer />
+    </v-toolbar>
+    <v-card-text class="pb-0">
+        <v-form>
+            <v-text-field
+                :value="login"
+                label="Login"
+                name="login"
+                @input.native="handleTextFieldUpdate"
+            />
+            <v-text-field
+                :value="password"
+                label="Password"
+                name="password"
+                @input.native="handleTextFieldUpdate"
+            />
+        </v-form>
+    </v-card-text>
+    <v-card-text v-if="errorMessage">
+        <v-alert type="error" :value="true">
+            {{errorMessage}}
+        </v-alert>
+    </v-card-text>
+    <v-card-text>
+        <v-flex layout justify-space-between>
+            <router-link to="/account/create">Create an account</router-link>
+            <router-link to="/password/restore">Forgot password?</router-link>
+        </v-flex>
+    </v-card-text>
+    <v-card-text class="text-xs-center">
+        <v-btn
+            :disabled="isLoading"
+            color="primary"
+            @click="handleSignIn"
+        >
+            Sign in
+        </v-btn>
+    </v-card-text>
+</v-card>

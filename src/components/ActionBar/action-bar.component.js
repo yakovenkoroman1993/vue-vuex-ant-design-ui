@@ -4,6 +4,8 @@ import Component from 'vue-class-component';
 import Template from './action-bar.template.html';
 import {mapMutations, mapActions, mapGetters } from 'vuex';
 import {vuexify} from '../../helpers';
+import {TODO_FORM, TODOS_INFO} from '../../store/types';
+import {addTodo} from '../../store/actions/todos-info.action';
 
 @Template
 @Component({
@@ -13,35 +15,36 @@ import {vuexify} from '../../helpers';
             'name',
             'id'
         ]),
-        ...mapState('todosInfo', [
-            'isLoading'
-        ]),
         ...mapGetters('todosInfo', [
             'total'
         ]),
-        ...vuexify('todoForm/completed', 'onUpdate'),
-        ...vuexify('todoForm/reserved', 'onUpdate'),
+        ...vuexify('todoForm/completed', TODO_FORM.UPDATE),
+        ...vuexify('todoForm/reserved', TODO_FORM.UPDATE),
     },
     methods: {
         ...mapMutations('todoForm', {
-            onTextFieldUpdate(commit, {target}) {
-                commit('onUpdate', {
+            handleTextFieldUpdate(commit, {target}) {
+                commit(TODO_FORM.UPDATE, {
                     [target.name]: target.value
                 })
             }
         }),
-        ...mapActions('todosInfo', ['onAdd']),
+        ...mapActions('todosInfo', {
+            handleTodoCreate(dispatch) {
+                dispatch(addTodo());
+            }
+        }),
     }
 })
 export default class extends Vue {
     arrowButtonHover = false;
-    onArrowButtonMouseOver() {
+    handleArrowButtonMouseOver() {
         this.arrowButtonHover = true;
     }
-    onArrowButtonMouseLeave() {
+    handleArrowButtonMouseLeave() {
         this.arrowButtonHover = false;
     }
-    goToTodoList() {
+    handleNavigationToTodoList() {
         this.$router.push({
             name: 'todoListRoute'
         })

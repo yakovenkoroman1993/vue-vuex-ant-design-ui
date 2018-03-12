@@ -5,13 +5,21 @@
         <v-container fluid fill-height>
             <v-layout align-center justify-center>
                 <v-flex xs12 sm8 md4>
-                    <router-view />
-
-                    <v-flex d-flex>
-                        <v-avatar :tile="true" :size="50">
-                            <img :src="require('./images/logo.png')" />
-                        </v-avatar>
-                    </v-flex>
+                    <template v-if="isLoading">
+                        <v-flex layout justify-center>
+                            <v-progress-circular indeterminate :size="50" color="primary" />
+                        </v-flex>
+                    </template>
+                    <template v-else>
+                        <router-view />
+                        <!--
+                        <v-flex d-flex>
+                            <v-avatar :tile="true" :size="50">
+                                <img :src="require('./images/logo.png')" />
+                            </v-avatar>
+                        </v-flex>
+                        -->
+                    </template>
                 </v-flex>
             </v-layout>
         </v-container>

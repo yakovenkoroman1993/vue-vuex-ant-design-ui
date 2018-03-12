@@ -2,7 +2,7 @@
     <v-toolbar dark color="primary">
         <v-btn
             color="darken-2"
-            @click="goToBack"
+            @click="handleHistoryBack"
             dark
             icon
         >
@@ -15,7 +15,7 @@
         <v-list-tile
             :key="todo.name"
             v-for="(todo, i) in todos"
-            @click="onTodoListItemClick(todo)"
+            @click="handleTodoListItemClick(todo)"
         >
             <v-list-tile-action>
                 <v-icon v-if="todo.completed" color="pink">star</v-icon>

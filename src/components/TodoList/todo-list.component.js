@@ -2,6 +2,7 @@ import Vue from 'vue';
 import {mapState, mapActions} from 'vuex';
 import Component from 'vue-class-component';
 import Template from './todo-list.template.html';
+import {updateTodo} from '../../store/actions/todos-info.action';
 
 @Template
 @Component({
@@ -13,17 +14,17 @@ import Template from './todo-list.template.html';
     },
     methods: {
         ...mapActions('todosInfo', {
-            onTodoListItemClick(dispatch, todo) {
-                dispatch('onTodoUpdate', {
+            handleTodoListItemClick(dispatch, todo) {
+                dispatch(updateTodo({
                     ...todo,
                     completed: !todo.completed
-                });
+                }));
             }
         })
     }
 })
 export default class extends Vue {
-    goToBack() {
+    handleHistoryBack() {
         this.$router.go(-1);
     }
 }

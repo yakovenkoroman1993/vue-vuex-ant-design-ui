@@ -1,4 +1,5 @@
 import {
+    SignIn,
     TodoList,
     NotFound,
     ActionBar,
@@ -13,6 +14,9 @@ export default [{
     name: 'todoListRoute',
     component: TodoList
 }, {
+    path: '/auth',
+    component: SignIn
+},{
     path: '*',
     component: NotFound
 }];
