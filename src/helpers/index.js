@@ -29,3 +29,13 @@ export function makeRequestAction(requestActionTypes, {
         [requestActionTypes.FAILURE]: failure,
     };
 }
+
+export function pipe(...fns) {
+    return (input) => (
+        fns.reduce((result, fn) => fn(result), input)
+    );
+}
+
+export function select(key) {
+    return (state) => state[key];
+}

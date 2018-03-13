@@ -4,7 +4,7 @@ import Component from 'vue-class-component';
 import Template from './action-bar.template.html';
 import {mapMutations, mapActions, mapGetters } from 'vuex';
 import {vuexify} from '../../helpers';
-import {TODO_FORM, TODOS_INFO} from '../../store/types';
+import {TODO_FORM} from '../../store/types';
 import {addTodo} from '../../store/actions/todos-info.action';
 
 @Template

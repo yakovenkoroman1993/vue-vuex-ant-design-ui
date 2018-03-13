@@ -4,9 +4,8 @@
     <v-content>
         <v-container fluid fill-height>
             <v-layout align-center justify-center>
-                <v-flex xs12 sm8 md4>
                     <template v-if="isLoading">
-                        <v-flex layout justify-center>
+                        <v-flex d-flex justify-center>
                             <v-progress-circular indeterminate :size="50" color="primary" />
                         </v-flex>
                     </template>
@@ -20,7 +19,6 @@
                         </v-flex>
                         -->
                     </template>
-                </v-flex>
             </v-layout>
         </v-container>
     </v-content>

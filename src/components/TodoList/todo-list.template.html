@@ -1,29 +1,31 @@
-<v-card class="elevation-12">
-    <v-toolbar dark color="primary">
-        <v-btn
-            color="darken-2"
-            @click="handleHistoryBack"
-            dark
-            icon
-        >
-            <v-icon dark>arrow_back</v-icon>
-        </v-btn>
-        <v-toolbar-title>Todo list</v-toolbar-title>
-        <v-spacer />
-    </v-toolbar>
-    <v-list two-line>
-        <v-list-tile
-            :key="todo.name"
-            v-for="(todo, i) in todos"
-            @click="handleTodoListItemClick(todo)"
-        >
-            <v-list-tile-action>
-                <v-icon v-if="todo.completed" color="pink">star</v-icon>
-                <v-icon v-else="todo.completed" color="pink">star_border</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-                <v-list-tile-title v-text="todo.name"></v-list-tile-title>
-            </v-list-tile-content>
-        </v-list-tile>
-    </v-list>
-</v-card>
+<v-flex xs12 sm8 md4 justify-center>
+    <v-card class="elevation-12">
+        <v-toolbar dark color="primary">
+            <v-btn
+                color="darken-2"
+                @click="handleHistoryBack"
+                dark
+                icon
+            >
+                <v-icon dark>arrow_back</v-icon>
+            </v-btn>
+            <v-toolbar-title>Todo list</v-toolbar-title>
+            <v-spacer />
+        </v-toolbar>
+        <v-list two-line>
+            <v-list-tile
+                :key="todo.name"
+                v-for="(todo, i) in todos"
+                @click="handleTodoListItemClick(todo)"
+            >
+                <v-list-tile-action>
+                    <v-icon v-if="todo.completed" color="pink">star</v-icon>
+                    <v-icon v-else="todo.completed" color="pink">star_border</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    <v-list-tile-title v-text="todo.name"></v-list-tile-title>
+                </v-list-tile-content>
+            </v-list-tile>
+        </v-list>
+    </v-card>
+</v-flex>

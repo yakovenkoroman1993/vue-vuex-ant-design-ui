@@ -3,6 +3,7 @@ import {
     TodoList,
     NotFound,
     ActionBar,
+    FilesTable,
 } from '../components';
 
 export default [{
@@ -16,7 +17,10 @@ export default [{
 }, {
     path: '/auth',
     component: SignIn
-},{
+}, {
+    path: '/files',
+    component: FilesTable
+}, {
     path: '*',
     component: NotFound
 }];

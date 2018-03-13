@@ -5,6 +5,8 @@ import app from './modules/app.module';
 import todosInfo from './modules/todos-info.module';
 import todoForm from './modules/todo-form.module';
 import signInForm from './modules/signin-form.module';
+import files from './modules/files.module';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -13,9 +15,10 @@ export default new Vuex.Store({
         requestsPlugin
     ],
     modules: {
+        signInForm,
         todosInfo,
         todoForm,
-        signInForm,
+        files,
         app
     }
 });

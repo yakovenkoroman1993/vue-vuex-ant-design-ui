@@ -6,12 +6,10 @@ let asRequestAction = (prefix) => ({
 
 export const APP = {
     TOGGLE_LOADING: 'TOGGLE_LOADING',
-    ACTIONS: {}
 };
 
 export const TODO_FORM = {
     UPDATE: 'UPDATE',
-    ACTIONS: {}
 };
 
 export const TODOS_INFO = {
@@ -24,4 +22,8 @@ export const TODOS_INFO = {
 export const SIGN_IN_FORM = {
     UPDATE: 'UPDATE',
     SIGN_IN_ACTION: asRequestAction('SIGN_IN'),
+};
+
+export const FILES = {
+    UPDATE: 'UPDATE',
 };
