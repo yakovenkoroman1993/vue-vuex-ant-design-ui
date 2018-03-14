@@ -24,17 +24,17 @@ module.exports = {
         }
     },
     module: {
-        rules: [{
-            test: /\.html$/,
-            loader: 'vue-template-loader',
-            // We don't want to pass `src/index.html` file to this loader.
-            exclude: /index.html/,
-        }, /*{
+        rules: [/*{
             enforce: 'pre',
             test: /\.(js|vue)$/,
             exclude: /node_modules/,
             loader: 'eslint-loader',
         },*/ {
+            test: /\.vue$/,
+            exclude: /node_modules/,
+            include: path.join(__dirname, 'src'),
+            use: 'vue-loader',
+        }, {
             test: /\.js?$/,
             exclude: /node_modules/,
             include: path.join(__dirname, 'src'),

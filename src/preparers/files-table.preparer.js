@@ -4,9 +4,9 @@ import {
     FILE_TYPES_TITLES,
     FILE_STATUSES_TITLES,
     TRANSPORT_TYPES_TITLES,
-} from '../../store/types/files.types';
+} from '../store/types/files.types';
 
-export function filterFiles(state) {
+function filterFiles(state) {
     let {
         items,
         activeFileType,
@@ -30,7 +30,7 @@ export function filterFiles(state) {
     };
 }
 
-export function normalizeFiles(state) {
+function normalizeFiles(state) {
     let {items} = state;
     return {
         ...state,
@@ -42,4 +42,11 @@ export function normalizeFiles(state) {
             typeTitle: FILE_TYPES_TITLES[file.type],
         }))
     };
+}
+
+export default {
+    files: [
+        filterFiles,
+        normalizeFiles,
+    ]
 }

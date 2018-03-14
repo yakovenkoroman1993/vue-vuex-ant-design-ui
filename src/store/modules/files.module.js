@@ -1,5 +1,5 @@
 import {FILES} from '../types';
-import * as MutationsHelper from '../../helpers/mutations.helper';
+import {assignToState} from '../../helpers/state.helper';
 import {
     FILE_TYPES_TITLES,
     FILTER_OPTIONS_TITLES
@@ -83,7 +83,7 @@ let getters = {
 };
 
 let mutations = {
-    [FILES.UPDATE]: MutationsHelper.assignToState
+    [FILES.UPDATE]: assignToState
 };
 
 let actions = {};

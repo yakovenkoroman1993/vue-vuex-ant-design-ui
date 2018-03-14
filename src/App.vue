@@ -1,9 +1,10 @@
-<v-app>
-    <!--<v-navigation-drawer app></v-navigation-drawer>-->
-    <!--<v-toolbar app></v-toolbar>-->
-    <v-content>
-        <v-container fluid fill-height>
-            <v-layout align-center justify-center>
+<template>
+    <v-app>
+        <!--<v-navigation-drawer app></v-navigation-drawer>-->
+        <!--<v-toolbar app></v-toolbar>-->
+        <v-content>
+            <v-container fluid fill-height>
+                <v-layout align-center justify-center>
                     <template v-if="isLoading">
                         <v-flex d-flex justify-center>
                             <v-progress-circular indeterminate :size="50" color="primary" />
@@ -19,8 +20,22 @@
                         </v-flex>
                         -->
                     </template>
-            </v-layout>
-        </v-container>
-    </v-content>
-    <v-footer app></v-footer>
-</v-app>
+                </v-layout>
+            </v-container>
+        </v-content>
+        <!--<v-footer app />-->
+    </v-app>
+</template>
+
+<script>
+    import {mapState} from 'vuex';
+
+    export default {
+        name: 'App',
+        computed: {
+            ...mapState({
+                isLoading: state => state.app.isLoading
+            })
+        }
+    }
+</script>

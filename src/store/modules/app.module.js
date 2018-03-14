@@ -1,4 +1,4 @@
-import * as MutationsHelper from '../../helpers/mutations.helper';
+import {assignToState} from '../../helpers/state.helper';
 import {APP} from '../types';
 
 let defaultState = {
@@ -8,7 +8,7 @@ let defaultState = {
 let getters = {};
 
 let mutations = {
-    [APP.TOGGLE_LOADING]: MutationsHelper.assignToState
+    [APP.TOGGLE_LOADING]: assignToState
 };
 
 let actions = {};

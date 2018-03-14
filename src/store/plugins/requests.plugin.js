@@ -1,5 +1,5 @@
 import {APP} from '../types';
-import {fetch} from '../../helpers/ajax';
+import {fetch} from '../../helpers/ajax.helper';
 
 let inGlobalNamespace = {root: true};
 

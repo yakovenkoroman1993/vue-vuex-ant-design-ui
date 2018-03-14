@@ -1,6 +1,6 @@
 import {SIGN_IN_FORM} from '../types';
-import * as MutationsHelper from '../../helpers/mutations.helper';
-import {makeRequestAction} from '../../helpers';
+import {assignToState} from '../../helpers/state.helper';
+import {makeRequestAction} from '../../helpers/actions.helper';
 
 let defaultState = {
     login: '',
@@ -12,7 +12,7 @@ let defaultState = {
 let getters = {};
 
 let mutations = {
-    [SIGN_IN_FORM.UPDATE]: MutationsHelper.assignToState,
+    [SIGN_IN_FORM.UPDATE]: assignToState,
 };
 
 let actions = {

@@ -1,4 +1,4 @@
-import * as MutationsHelper from '../../helpers/mutations.helper';
+import {assignToState} from '../../helpers/state.helper';
 import {TODO_FORM} from '../types';
 
 let defaultState = {
@@ -12,7 +12,7 @@ let getters = {};
 let actions = {};
 
 let mutations = {
-    [TODO_FORM.UPDATE]: MutationsHelper.assignToState
+    [TODO_FORM.UPDATE]: assignToState
 };
 
 export default {
