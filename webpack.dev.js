@@ -31,6 +31,15 @@ module.exports = merge(common, {
         watchOptions: {
             poll: 1000, // it's worth setting a timeout to prevent high CPU load
         },
+        proxy: {
+            '/api/': {
+                target: 'http://127.0.0.1:8080',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
+        },
     },
     plugins: [
         new webpack.DefinePlugin({

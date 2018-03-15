@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App';
-import './mui';
+import './design';
 import store from './store';
 import router from './router';
 

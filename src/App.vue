@@ -1,30 +1,22 @@
 <template>
-    <v-app>
-        <!--<v-navigation-drawer app></v-navigation-drawer>-->
-        <!--<v-toolbar app></v-toolbar>-->
-        <v-content>
-            <v-container fluid fill-height>
-                <v-layout align-center justify-center>
-                    <template v-if="isLoading">
-                        <v-flex d-flex justify-center>
-                            <v-progress-circular indeterminate :size="50" color="primary" />
-                        </v-flex>
-                    </template>
-                    <template v-else>
-                        <router-view />
-                        <!--
-                        <v-flex d-flex>
-                            <v-avatar :tile="true" :size="50">
-                                <img :src="require('./images/logo.png')" />
-                            </v-avatar>
-                        </v-flex>
-                        -->
-                    </template>
-                </v-layout>
-            </v-container>
-        </v-content>
-        <!--<v-footer app />-->
-    </v-app>
+    <el-container>
+        <el-header>
+            <el-row type="flex" justify="center">
+                <img id="logo" :src="require('./images/logo.png')" />
+            </el-row>
+        </el-header>
+        <el-main class="main">
+            <temlate v-if="isLoading">
+                <span v-loading.fullscreen.lock="true"/>
+            </temlate>
+            <router-view style="height: 100%"/>
+        </el-main>
+        <el-footer>
+            <el-row type="flex" justify="center">
+                This website is protected by copyright | Terms of Use, Disclaimers © The Nexxus Marketing Group®, LLC
+            </el-row>
+        </el-footer>
+    </el-container>
 </template>
 
 <script>
@@ -39,3 +31,13 @@
         }
     }
 </script>
+
+<style scoped>
+    #logo {
+        height: 60px;
+    }
+    .main {
+        /*header + footer + padding top|bottom*/
+        height: calc(100vh - 60px - 60px - 2*20px);
+    }
+</style>

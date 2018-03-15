@@ -17,7 +17,7 @@ export function prepare(stateKey, preparers) {
 /**
  * see "vuex way" by url https://vuex.vuejs.org/en/forms.html
  */
-export function mapStateWithMutation(mutation, stateKeys) {
+export function mapStateForTwoWayBindingControls(mutation, stateKeys) {
     let originalStateKeys = stateKeys;
     let aliasStateKeys = stateKeys;
     if (!Array.isArray(stateKeys)) {

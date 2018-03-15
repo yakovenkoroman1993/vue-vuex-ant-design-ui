@@ -4,7 +4,7 @@ import {
     NotFound,
     ActionBar,
     FilesTable,
-} from '../components';
+} from '../containers';
 
 export default [{
     path: '/',

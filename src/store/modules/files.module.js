@@ -34,7 +34,87 @@ let defaultState = {
         createdAt: Date.now(),
         type: FILE_TYPES.REMITTANCE,
         name: 'sales_1.txt',
-        uploader: 'Ivan Urgant',
+        uploader: 'Ivan 1',
+        transport: TRANSPORT_TYPES.SFTP
+    }, {
+        status: FILE_STATUSES.VALID,
+        badRecordsNumber: 12,
+        createdAt: Date.now(),
+        type: FILE_TYPES.REMITTANCE,
+        name: 'sales_2.txt',
+        uploader: 'Ivan 2',
+        transport: TRANSPORT_TYPES.SFTP
+    }, {
+        status: FILE_STATUSES.INVALID,
+        badRecordsNumber: 0,
+        createdAt: Date.now(),
+        type: FILE_TYPES.REMITTANCE,
+        name: 'sales_3.txt',
+        uploader: 'Roman',
+        transport: TRANSPORT_TYPES.SFTP
+    }, {
+        status: FILE_STATUSES.VALID,
+        badRecordsNumber: 2,
+        createdAt: Date.now(),
+        type: FILE_TYPES.SALES,
+        name: 'sales_5.txt',
+        uploader: 'Alex',
+        transport: TRANSPORT_TYPES.AS2
+    }, {
+        status: FILE_STATUSES.VALID,
+        badRecordsNumber: 12,
+        createdAt: Date.now(),
+        type: FILE_TYPES.REMITTANCE,
+        name: 'sales_2.txt',
+        uploader: 'Ivan 2',
+        transport: TRANSPORT_TYPES.SFTP
+    }, {
+        status: FILE_STATUSES.VALID,
+        badRecordsNumber: 12,
+        createdAt: Date.now(),
+        type: FILE_TYPES.REMITTANCE,
+        name: 'sales_2.txt',
+        uploader: 'Ivan 2',
+        transport: TRANSPORT_TYPES.SFTP
+    }, {
+        status: FILE_STATUSES.VALID,
+        badRecordsNumber: 12,
+        createdAt: Date.now(),
+        type: FILE_TYPES.REMITTANCE,
+        name: 'sales_2.txt',
+        uploader: 'Ivan 2',
+        transport: TRANSPORT_TYPES.SFTP
+    }, {
+        status: FILE_STATUSES.VALID,
+        badRecordsNumber: 12,
+        createdAt: Date.now(),
+        type: FILE_TYPES.REMITTANCE,
+        name: 'sales_2.txt',
+        uploader: 'Ivan 2',
+        transport: TRANSPORT_TYPES.SFTP
+    }, {
+        status: FILE_STATUSES.VALID,
+        badRecordsNumber: 12,
+        createdAt: Date.now(),
+        type: FILE_TYPES.REMITTANCE,
+        name: 'sales_2.txt',
+        uploader: 'Ivan 2',
+        transport: TRANSPORT_TYPES.SFTP
+    }, {
+        status: FILE_STATUSES.VALID,
+        badRecordsNumber: 12,
+        createdAt: Date.now(),
+        type: FILE_TYPES.REMITTANCE,
+        name: 'sales_2.txt',
+        uploader: 'Ivan 2',
+        transport: TRANSPORT_TYPES.SFTP
+    }, {
+        status: FILE_STATUSES.VALID,
+        badRecordsNumber: 12,
+        createdAt: Date.now(),
+        type: FILE_TYPES.REMITTANCE,
+        name: 'sales_2.txt',
+        uploader: 'Ivan 2',
         transport: TRANSPORT_TYPES.SFTP
     }],
     headers: [{
