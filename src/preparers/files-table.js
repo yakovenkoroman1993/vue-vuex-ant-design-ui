@@ -22,7 +22,7 @@ function filterFiles(state) {
         filters.push(file => file.type === activeFileType);
     }
 
-    items = filters.reduce((result, predicate) => result.filter(predicate), items);
+    items = filters.reduce((result, filter) => result.filter(filter), items);
 
     return {
         ...state,

@@ -65,7 +65,7 @@ module.exports = {
     plugins: [
         // see https://webpack.js.org/plugins/
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'index.html'),
+            template: path.join(__dirname, 'src/index.html'),
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',

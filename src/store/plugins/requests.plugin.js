@@ -17,13 +17,15 @@ export default (store) => {
 
         try {
             let response = await fetch(payload.url, payload.params);
-            store.dispatch(baseActionName + '_SUCCESS', {
+            store.dispatch(`${baseActionName}_SUCCESS`, {
                 params: payload.params,
                 response,
             });
-        } catch (error) {
-            store.dispatch(baseActionName + '_FAILURE', error);
-        } finally {
+        }
+        catch (error) {
+            store.dispatch(`${baseActionName}_FAILURE`, error);
+        }
+        finally {
             store.commit(APP.TOGGLE_LOADING, {isLoading: false}, inGlobalNamespace);
         }
     });
