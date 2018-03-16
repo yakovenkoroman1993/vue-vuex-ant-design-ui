@@ -31,17 +31,17 @@
 
 <script>
     import {mapState, mapActions} from 'vuex';
-    import {updateTodo} from '../store/actions/todos-info.action';
+    import {updateTodo} from '../store/actions/todos.action';
 
     export default {
         name: 'todo-list',
         computed: {
-            ...mapState('todosInfo', {
+            ...mapState('todos', {
                 todos: 'items'
             })
         },
         methods: {
-            ...mapActions('todosInfo', {
+            ...mapActions('todos', {
                 handleTodoListItemClick(dispatch, stateName, todo) {
                     dispatch(updateTodo({
                         ...todo,

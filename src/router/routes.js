@@ -4,6 +4,7 @@ import {
     NotFound,
     ActionBar,
     FilesTable,
+    ComplexForm,
 } from '../containers';
 
 export default [{
@@ -20,6 +21,9 @@ export default [{
 }, {
     path: '/files',
     component: FilesTable
+}, {
+    path: '/validation',
+    component: ComplexForm,
 }, {
     path: '*',
     component: NotFound

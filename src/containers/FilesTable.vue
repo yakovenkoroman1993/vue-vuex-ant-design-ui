@@ -66,7 +66,7 @@
 
 <script>
     import {mapState, mapGetters} from 'vuex';
-    import {mapStateForTwoWayBindingControls} from '../helpers/state.helper';
+    import {mapStateWithMutation} from '../helpers/state.helper';
     import {prepare} from '../helpers/state.helper';
     import {FILES} from '../store/types';
     import preparers from '../preparers/files-table';
@@ -103,11 +103,11 @@
                 files: prepare('items', preparers.files),
             }),
             ...mapGetters('files', ['total']),
-            ...mapStateForTwoWayBindingControls(`files/${FILES.UPDATE}`, [
+            ...mapStateWithMutation(`files`, FILES.UPDATE, [
                 'activeFileType',
                 'activeFilter',
             ]),
-            ...mapStateForTwoWayBindingControls(`files/${FILES.UPDATE}`, {
+            ...mapStateWithMutation(`files`, FILES.UPDATE, {
                 onlyWithIssues: 'isShowFilesWithIssuesOnly'
             }),
         },

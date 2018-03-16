@@ -17,7 +17,7 @@ export function prepare(stateKey, preparers) {
 /**
  * see "vuex way" by url https://vuex.vuejs.org/en/forms.html
  */
-export function mapStateForTwoWayBindingControls(mutation, stateKeys) {
+export function mapStateWithMutation(source, mutation, stateKeys) {
     let originalStateKeys = stateKeys;
     let aliasStateKeys = stateKeys;
     if (!Array.isArray(stateKeys)) {
@@ -26,18 +26,16 @@ export function mapStateForTwoWayBindingControls(mutation, stateKeys) {
     }
 
     return aliasStateKeys.reduce((map, _, i) => {
-        let stateKeyLocation = [];
-        if (mutation.search('/') !== -1) {
-            stateKeyLocation.push(...mutation.split('/').slice(0, -1))
-        }
-
-        let stateKeyPath = [...stateKeyLocation, originalStateKeys[i]];
+        let stateKeyPath = [
+            ...source.split('/'),
+            originalStateKeys[i]
+        ];
         map[aliasStateKeys[i]] = {
             get() {
                 return _get(this.$store.state, stateKeyPath);
             },
             set(value) {
-                this.$store.commit(mutation, {
+                this.$store.commit(`${source}/${mutation}`, {
                     [originalStateKeys[i]]: value
                 })
             }

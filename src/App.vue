@@ -6,9 +6,9 @@
             </el-row>
         </el-header>
         <el-main class="main">
-            <temlate v-if="isLoading">
+            <template v-if="isLoading">
                 <span v-loading.fullscreen.lock="true"/>
-            </temlate>
+            </template>
             <router-view style="height: 100%"/>
         </el-main>
         <el-footer>

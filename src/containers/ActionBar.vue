@@ -42,9 +42,9 @@
 <script>
     import {mapState} from 'vuex';
     import {mapMutations, mapActions, mapGetters } from 'vuex';
-    import {mapStateForTwoWayBindingControls} from '../helpers/state.helper';
+    import {mapStateWithMutation} from '../helpers/state.helper';
     import {TODO_FORM} from '../store/types';
-    import {addTodo} from '../store/actions/todos-info.action';
+    import {addTodo} from '../store/actions/todos.action';
 
     export default {
         name: 'action-bar',
@@ -53,10 +53,10 @@
                 'name',
                 'id'
             ]),
-            ...mapGetters('todosInfo', [
+            ...mapGetters('todos', [
                 'total'
             ]),
-            ...mapStateForTwoWayBindingControls(`todoForm/${TODO_FORM.UPDATE}`, [
+            ...mapStateWithMutation(`todoForm`, TODO_FORM.UPDATE, [
                 'completed',
                 'reserved',
             ]),
@@ -69,7 +69,7 @@
                     })
                 }
             }),
-            ...mapActions('todosInfo', {
+            ...mapActions('todos', {
                 handleTodoCreate(dispatch) {
                     dispatch(addTodo());
                 }

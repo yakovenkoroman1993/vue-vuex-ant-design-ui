@@ -19,11 +19,15 @@ export const TODOS_INFO = {
     UPDATE_TODO_ACTION: asRequestAction('UPDATE_TODO'),
 };
 
-export const SIGN_IN_FORM = {
+export const SIGN_IN = {
     UPDATE: 'UPDATE',
     SIGN_IN_ACTION: asRequestAction('SIGN_IN'),
 };
 
 export const FILES = {
+    UPDATE: 'UPDATE',
+};
+
+export const COMPLEX_FORM = {
     UPDATE: 'UPDATE',
 };
