@@ -6,5 +6,6 @@
   "bundleAnalyzer": {
     "host": "ANALYZER_HOST",
     "port": "ANALYZER_PORT"
-  }
+  },
+  "locale": "LOCALE"
 }

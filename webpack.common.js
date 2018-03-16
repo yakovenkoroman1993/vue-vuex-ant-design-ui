@@ -2,6 +2,7 @@ let path = require('path');
 let webpack = require('webpack');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+let config = require('config');
 
 module.exports = {
     entry: {
@@ -63,6 +64,9 @@ module.exports = {
         }]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            LOCALE: `"${config.locale}"`,
+        }),
         // see https://webpack.js.org/plugins/
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.html'),
