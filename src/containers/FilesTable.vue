@@ -67,9 +67,7 @@
 <script>
     import {mapState, mapGetters} from 'vuex';
     import {mapStateWithMutation} from '../helpers/state.helper';
-    import {prepare} from '../helpers/state.helper';
     import {FILES} from '../store/types';
-    import preparers from '../preparers/files-table';
 
     export default {
         name: 'files-table',
@@ -86,23 +84,13 @@
                 }
             };
         },
-        mounted() {
-            window.addEventListener('resize', this.handleWindowResize);
-            this.tableOptions.maxHeight = this.calcTableHeight();
-        },
-        beforeDestroy() {
-            window.removeEventListener('resize', this.handleWindowResize);
-        },
         computed: {
             ...mapState('files', [
                 'filterOptions',
                 'fileTypes',
                 'headers',
             ]),
-            ...mapState('files', {
-                files: prepare('items', preparers.files),
-            }),
-            ...mapGetters('files', ['total']),
+            ...mapGetters('files', ['total', 'files']),
             ...mapStateWithMutation(`files`, FILES.UPDATE, [
                 'activeFileType',
                 'activeFilter',
@@ -110,6 +98,13 @@
             ...mapStateWithMutation(`files`, FILES.UPDATE, {
                 onlyWithIssues: 'isShowFilesWithIssuesOnly'
             }),
+        },
+        mounted() {
+            window.addEventListener('resize', this.handleWindowResize);
+            this.tableOptions.maxHeight = this.calcTableHeight();
+        },
+        beforeDestroy() {
+            window.removeEventListener('resize', this.handleWindowResize);
         },
         methods: {
             handleWindowResize() {

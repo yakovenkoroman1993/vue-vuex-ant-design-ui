@@ -1,8 +1,9 @@
 import {FILES} from '../types';
 import {assignToState} from '../../helpers/state.helper';
 import {
+    FILE_STATUSES_TITLES,
     FILE_TYPES_TITLES,
-    FILTER_OPTIONS_TITLES
+    FILTER_OPTIONS_TITLES, TRANSPORT_TYPES_TITLES
 } from '../types/files.types';
 import {
     FILE_TYPES,
@@ -159,6 +160,32 @@ let defaultState = {
 let getters = {
     total(state) {
         return state.items.length;
+    },
+    files(state) {
+        let {
+            items,
+            activeFileType,
+            isShowFilesWithIssuesOnly,
+        } = state;
+
+        let filters = [];
+        if (isShowFilesWithIssuesOnly) {
+            filters.push(file => file.status === FILE_STATUSES.INVALID);
+        }
+
+        if (activeFileType !== FILE_TYPES.ALL) {
+            filters.push(file => file.type === activeFileType);
+        }
+
+        return filters
+            .reduce((result, filter) => result.filter(filter), items)
+            .map((file) => ({
+                ...file,
+                createdAt: new Date(file.createdAt).toLocaleString(),
+                statusTitle: FILE_STATUSES_TITLES[file.status],
+                transportTitle: TRANSPORT_TYPES_TITLES[file.transport],
+                typeTitle: FILE_TYPES_TITLES[file.type],
+            }));
     }
 };
 

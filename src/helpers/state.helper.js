@@ -1,17 +1,9 @@
-import {pipe} from './';
 import _get from 'lodash/get';
 
 export function assignToState(state, {...patch}) {
     Object.keys(patch).forEach((key) => (
         state[key] = patch[key]
     ));
-}
-
-export function prepare(stateKey, preparers) {
-    return pipe(
-        ...preparers,
-        (state) => state[stateKey]
-    );
 }
 
 /**
