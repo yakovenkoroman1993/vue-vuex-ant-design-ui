@@ -8,21 +8,30 @@
                             <img :src="require('./../images/logo.png')" />
                         </el-row>
 
-                        <el-form :model="{password, login}" :rules="rules" ref="form">
-                            <el-form-item prop="login">
+                        <el-form>
+                            <el-form-item>
                                 <el-input
                                     :value="login"
                                     @input="onSignInStateUpdate({login: $event})"
                                     :placeholder="$t('signIn.labels.login')"
+                                    @blur.once="handleFieldBlurFor('login')"
                                 />
+                                <small v-if="errorsDisplay.login && errors.login" class="text-danger">
+                                    {{getErrorTextFor('login')}}
+                                </small>
                             </el-form-item>
-                            <el-form-item prop="password">
+                            <el-form-item>
                                 <el-input
                                     :value="password"
                                     @input="onSignInStateUpdate({password: $event})"
                                     :placeholder="$t('signIn.labels.password')"
+                                    @blur.once="handleFieldBlurFor('password')"
                                 />
+                                <small v-if="errorsDisplay.password && errors.password" class="text-danger">
+                                    {{getErrorTextFor('password')}}
+                                </small>
                             </el-form-item>
+
                             <el-form-item v-if="errorMessage">
                                 <el-alert :title="errorMessage" type="error"/>
                             </el-form-item>
@@ -42,7 +51,8 @@
                         <el-button
                             type="primary"
                             size="medium"
-                            @click="handleSignIn(login, password)"
+                            :disabled="!valid"
+                            @click="handleSignIn"
                         >
                             {{$t('signIn.submitButton').toUpperCase()}}
                         </el-button>
@@ -54,62 +64,47 @@
 </template>
 
 <script>
-    import {mapState, mapActions, mapMutations} from 'vuex';
+    import {mapGetters, mapState, mapActions, mapMutations} from 'vuex';
     import {SIGN_IN} from '../store/types';
     import {signIn} from '../store/actions/signIn.action';
 
     export default {
         name: 'sign-in',
-        data() {
-            return {
-                rules: {
-                    login: [{
-                        required: true,
-                        message: this.$t('validation.require', {name: 'your login'}),
-                        trigger: 'blur',
-                    }, {
-                        min: 3,
-                        message: this.$t('validation.lengthShouldBeMore', {value: 3}),
-                        trigger: 'blur',
-                    }, {
-                        max: 10,
-                        message: this.$t('validation.lengthShouldBeLess', {value: 10}),
-                        trigger: 'change',
-                    }],
-                    password: [{
-                        required: true,
-                        message: this.$t('validation.require', {name: 'password'}),
-                        trigger: 'blur',
-                    }, {
-                        min: 6,
-                        message: this.$t('validation.lengthShouldBeMore', {value: 6}),
-                        trigger: 'blur',
-                    }]
-                }
-            };
-        },
         computed: {
             ...mapState('signIn', [
+                'errorsDisplay',
                 'errorMessage',
                 'password',
+                'errors',
                 'login',
             ]),
+            ...mapGetters('signIn', [
+                'valid'
+            ])
         },
         methods: {
             ...mapMutations('signIn', {
-                onSignInStateUpdate: SIGN_IN.UPDATE
+                onSignInStateUpdate: SIGN_IN.UPDATE,
+                handleFieldBlurFor(commit, fieldName) {
+                    commit(SIGN_IN.RESOLVE_STATE_KEY_FOR_VALIDATION, fieldName);
+                }
             }),
             ...mapActions('signIn', {
-                handleSignIn(dispatch, login, password) {
-                    this.$refs.form.validate((valid) => {
-                        if (!valid) {
-                            return false;
-                        }
+                handleSignIn(dispatch) {
+                    if (!this.valid) {
+                        return;
+                    }
 
-                        dispatch(signIn({login, password}));
-                    });
+                    let {login, password} = this;
+                    dispatch(signIn({login, password}));
                 }
-            })
+            }),
+            getErrorTextFor(fieldName) {
+                let errors = this.errors[fieldName];
+                return this.$t(`validation.${Object.keys(errors)[0]}`, {
+                    value: Object.values(errors)[0]
+                });
+            }
         }
     }
 </script>

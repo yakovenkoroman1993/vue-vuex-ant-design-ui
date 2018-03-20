@@ -1,17 +1,25 @@
 import {SIGN_IN} from '../types';
-import {assignToState} from '../../helpers/state.helper';
+import {assignToStateWithValidation} from '../../helpers/state.helper';
 import {makeRequestAction} from '../../helpers/actions.helper';
+import {makeValidatableState, resolveStateKey} from '../../helpers/validation.helper';
+import schema from '../validation/signIn.schema';
 
-let defaultState = {
+let defaultState = makeValidatableState(schema, {
     errorMessage: '',
     login: '',
     password: '',
+});
+
+
+let getters = {
+    valid(state) {
+        return !Object.keys(state.errors).length;
+    }
 };
 
-let getters = {};
-
 let mutations = {
-    [SIGN_IN.UPDATE]: assignToState
+    [SIGN_IN.RESOLVE_STATE_KEY_FOR_VALIDATION]: resolveStateKey,
+    [SIGN_IN.UPDATE]: assignToStateWithValidation(schema),
 };
 
 let actions = {

@@ -22,6 +22,8 @@ export const TODOS_INFO = {
 export const SIGN_IN = {
     UPDATE: 'UPDATE',
     SIGN_IN_ACTION: asRequestAction('SIGN_IN'),
+    RESOLVE_STATE_KEY_FOR_VALIDATION: 'RESOLVE_STATE_KEY_FOR_VALIDATION',
+    UPDATE_ERRORS: 'UPDATE_ERRORS',
 };
 
 export const FILES = {

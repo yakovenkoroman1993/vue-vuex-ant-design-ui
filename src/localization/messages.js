@@ -11,9 +11,8 @@ export default {
             }
         },
         validation: {
-            require: 'Please input {name}',
-            lengthShouldBeMore: 'Length should be at least {value}',
-            lengthShouldBeLess: 'Length should be less {value}',
+            minLength: 'Length should be at least {value}',
+            maxLength: 'Length should be less {value}',
         },
         applicationLayout: {
             menuNavigationItems: {

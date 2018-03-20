@@ -1,9 +1,20 @@
 import _get from 'lodash/get';
+import {getValidationErrorsFromState} from './validation.helper';
 
 export function assignToState(state, {...patch}) {
     Object.keys(patch).forEach((key) => (
         state[key] = patch[key]
     ));
+}
+
+export function assignToStateWithValidation(schema) {
+    return (state, {...patch}) => {
+        Object.keys(patch).forEach((key) => (
+            state[key] = patch[key]
+        ));
+
+        state.errors = getValidationErrorsFromState(schema, state);
+    };
 }
 
 

@@ -9,6 +9,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 /* App colors */
 $colorPrimary: $--color-primary;
 $colorWarning: $--color-warning;
+$colorDanger: $--color-danger;
 $colorAppHeader: #395d81;
 $colorPageTitle: $colorAppHeader;
 $colorTextRegular: $--color-text-regular;
@@ -33,4 +34,5 @@ $fontSizePageTitle: 36px;
   colorPageTitle: $colorPageTitle;
   colorWarning: $colorWarning;
   colorTextRegular: $colorTextRegular;
+  colorDanger: $colorDanger;
 }
