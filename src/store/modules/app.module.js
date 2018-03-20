@@ -2,7 +2,8 @@ import {assignToState} from '../../helpers/state.helper';
 import {APP} from '../types';
 
 let defaultState = {
-    isLoading: false
+    isLoading: false,
+    authenticated: true,
 };
 
 let getters = {};

@@ -11,7 +11,7 @@ let defaultState = {
 let getters = {};
 
 let mutations = {
-    [SIGN_IN.UPDATE]: assignToState,
+    [SIGN_IN.UPDATE]: assignToState
 };
 
 let actions = {

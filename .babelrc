@@ -12,6 +12,9 @@
     "transform-vue-jsx",
     "transform-runtime",
     "transform-decorators-legacy",
-    "component"
+    ["component", /*[{
+      "libraryName": "element-ui",
+      "styleLibraryName": "~theme"
+    }]*/]
   ]
 }

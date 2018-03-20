@@ -7,6 +7,7 @@ import todoForm from './modules/todoForm.module';
 import signIn from './modules/signIn.module';
 import files from './modules/files.module';
 import complexForm from './modules/complexForm.module';
+import userProfile from './modules/userProfile.module';
 
 Vue.use(Vuex);
 
@@ -16,11 +17,9 @@ export default new Vuex.Store({
         requestsPlugin,
     ],
     modules: {
-        complexForm,
-        todoForm,
+        userProfile,
         signIn,
         files,
-        todos,
         app
     }
 });

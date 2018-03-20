@@ -4,6 +4,7 @@ import './design';
 import store from './store';
 import router from './router';
 import i18n from './localization';
+import './plugins';
 
 new Vue({
     el: '#app',
@@ -11,5 +12,5 @@ new Vue({
     store,
     router,
     components: {App},
-    template: '<App/>'
+    template: '<app />'
 });

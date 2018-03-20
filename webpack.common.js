@@ -44,7 +44,7 @@ module.exports = {
             test: /\.css$/,
             use: [ 'style-loader', 'css-loader' ]
         }, {
-            test: /\.scss$/,
+            test: /\.s[a|c]ss$/,
             use: [{
                 loader: 'style-loader' // creates style nodes from JS strings
             }, {
@@ -71,6 +71,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.html'),
         }),
+        new webpack.NormalModuleReplacementPlugin(/element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/, 'element-ui/lib/locale/lang/en'),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks({ resource, context }) {

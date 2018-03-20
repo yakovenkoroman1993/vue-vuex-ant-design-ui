@@ -1,0 +1,36 @@
+/* theme color */
+$--color-primary: #38c3d7;
+
+/* icon font path, required */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+
+/* App colors */
+$colorPrimary: $--color-primary;
+$colorWarning: $--color-warning;
+$colorAppHeader: #395d81;
+$colorPageTitle: $colorAppHeader;
+$colorTextRegular: $--color-text-regular;
+
+/* App sizes */
+$headerHeight: 60px;
+$footerHeight: 0px;
+$iconHeight: 30px;
+
+/* Font sizes*/
+$fontSizeBase: $--font-size-base;
+$fontSizeSmall: $--font-size-small;
+$fontSizeLarge: $--font-size-large;
+$fontSizeLarger: 22px;
+$fontSizePageTitle: 36px;
+
+:export {
+  colorAppHeader: $colorAppHeader;
+  colorPrimary: $colorPrimary;
+  headerHeight: $headerHeight;
+  footerHeight: $footerHeight;
+  colorPageTitle: $colorPageTitle;
+  colorWarning: $colorWarning;
+  colorTextRegular: $colorTextRegular;
+}

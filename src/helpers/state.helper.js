@@ -6,7 +6,9 @@ export function assignToState(state, {...patch}) {
     ));
 }
 
+
 /**
+ * @deprecated
  * see "vuex way" by url https://vuex.vuejs.org/en/forms.html
  */
 export function mapStateWithMutation(source, mutation, stateKeys) {
