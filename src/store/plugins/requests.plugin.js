@@ -18,7 +18,7 @@ export default (store) => {
         try {
             let response = await fetch(payload.url, payload.params);
             store.dispatch(`${baseActionName}_SUCCESS`, {
-                params: payload.params,
+                request: payload,
                 response,
             });
         }

@@ -18,5 +18,4 @@
 
 <style lang="scss">
     @import "design/theme/app";
-    @import "design/customization/data-tables-pagination";
 </style>

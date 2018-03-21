@@ -9,16 +9,18 @@
                     <el-menu
                         id="menu"
                         mode="horizontal"
-                        default-active="1"
-                        :background-color="styleVaribles.colorAppHeader"
+                        :default-active="activeRoute"
+                        :background-color="colorAppHeader"
                         active-text-color="white"
                         text-color="white"
                     >
-                        <el-menu-item index="1">
-                            {{$t('applicationLayout.menuNavigationItems.listView')}}
-                        </el-menu-item>
-                        <el-menu-item index="2">
-                            {{$t('applicationLayout.menuNavigationItems.calendar')}}
+                        <el-menu-item
+                            v-for="name in routeNames"
+                            :key="name"
+                            :index="name"
+                            @click="handleNavigate(name)"
+                        >
+                            {{$t(`applicationLayout.menuNavigationItems.${name}`)}}
                         </el-menu-item>
                     </el-menu>
                 </el-row>
@@ -68,14 +70,18 @@
     import {mapState} from 'vuex';
     import styleVaribles from '../design/theme/vars.scss';
     import _pick from 'lodash/pick';
+    import {ROUTES} from '../router/routes';
 
     export default {
-        name: 'application-layout',
         data() {
             return {
-                styleVaribles: _pick(styleVaribles, [
+                ..._pick(styleVaribles, [
                     'colorAppHeader',
-                ])
+                ]),
+                routeNames: [
+                    ROUTES.HOME,
+                    ROUTES.CALENDAR,
+                ]
             };
         },
         computed: {
@@ -86,12 +92,20 @@
                 'firstName',
                 'lastName',
                 'jobTitle',
-            ])
+            ]),
+            activeRoute() {
+                return this.$route.name;
+            }
         },
         beforeMount() {
             let {app: {authenticated}} = this.$store.state;
             if (!authenticated) {
                 this.$router.push('authentication');
+            }
+        },
+        methods: {
+            handleNavigate(routeName) {
+                this.$router.push({name: routeName});
             }
         }
     }

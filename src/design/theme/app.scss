@@ -13,3 +13,10 @@ a {
   color: $colorPrimary;
   text-decoration: none;
 }
+
+.page-title {
+  font-size: $fontSizePageTitle;
+  color: $colorPageTitle;
+  font-weight: bold;
+  margin: 0;
+}

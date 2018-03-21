@@ -1,6 +1,6 @@
 <template>
-    <application-layout>
-        <h1 class="title">{{$t('files.title')}}</h1>
+    <app-layout>
+        <h1 class="page-title">{{$t('files.title')}}</h1>
         <el-tabs
             id="file-types-tabs"
             :value="activeType"
@@ -25,18 +25,17 @@
                 />
             </el-tab-pane>
         </el-tabs>
-    </application-layout>
+    </app-layout>
 </template>
 
 <script>
     import _pick from 'lodash/pick';
     import {mapState, mapGetters, mapMutations} from 'vuex';
     import {FILES} from '../store/types';
-    import ApplicationLayout from "../components/ApplicationLayout";
     import FilesDataTable from '../components/FilesDataTable';
 
     export default {
-        components: {ApplicationLayout, FilesDataTable},
+        components: {FilesDataTable},
         name: 'files',
         computed: {
             ...mapState('files', [
@@ -79,13 +78,6 @@
 
 <style lang="scss" scoped>
     @import "../design/theme/vars.scss";
-
-    .title {
-        font-size: $fontSizePageTitle;
-        color: $colorPageTitle;
-        font-weight: bold;
-        margin: 0;
-    }
 
     #file-types-tabs {
         margin-top: 15px;

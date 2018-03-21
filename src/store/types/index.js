@@ -28,6 +28,10 @@ export const FILES = {
     UPDATE: 'UPDATE',
 };
 
+export const CALENDAR = {
+    UPDATE: 'UPDATE',
+};
+
 export const COMPLEX_FORM = {
     UPDATE: 'UPDATE',
 };

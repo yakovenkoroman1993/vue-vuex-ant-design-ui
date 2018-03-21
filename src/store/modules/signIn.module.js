@@ -16,7 +16,7 @@ let mutations = {
 
 let actions = {
     ...makeRequestAction(SIGN_IN.SIGN_IN_ACTION, {
-        request({commit}) {
+        before({commit}) {
             commit(SIGN_IN.UPDATE, {
                 errorMessage: ''
             });
