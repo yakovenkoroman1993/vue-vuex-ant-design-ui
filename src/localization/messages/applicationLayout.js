@@ -4,10 +4,11 @@ export default {
     en: {
         menuNavigationItems: {
             [ROUTES.HOME]: 'LIST VIEW',
-            [ROUTES.CALENDAR]: 'CALENDAR'
+            [ROUTES.CALENDAR]: 'CALENDAR',
         },
-        headerActionLinks: {
-            uploadFile: 'UPLOAD FILE'
+        headerActions: {
+            uploadFile: '+ UPLOAD FILE',
+            changeClient: 'CHANGE CLIENT',
         }
     }
 };

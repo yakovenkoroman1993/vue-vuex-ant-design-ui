@@ -13,3 +13,9 @@ export const FILE_STATUSES = {
     VALID: 'valid',
     INVALID: 'invalid',
 };
+
+export const FILE_EXTENSIONS = {
+    XLS: 'xls',
+    PDF: 'pdf',
+    DOCX: 'docx',
+};

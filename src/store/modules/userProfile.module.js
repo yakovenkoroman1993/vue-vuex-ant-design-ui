@@ -1,7 +1,11 @@
 let defaultState = {
     firstName: 'John',
     lastName: 'Doe',
-    jobTitle: 'X5 retail group'
+    jobTitle: 'X5 retail group X5 retail group X5 retail',
+    activeRetailer: {
+        firstName: 'Krispy  ',
+        lastName: 'Kreme',
+    }
 };
 
 let getters = {};

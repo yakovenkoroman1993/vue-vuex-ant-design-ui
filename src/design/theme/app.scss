@@ -14,9 +14,30 @@ a {
   text-decoration: none;
 }
 
+hr {
+  border-style: hidden;
+  border-bottom: 1px solid $borderColorLighter;
+}
+
 .page-title {
   font-size: $fontSizePageTitle;
   color: $colorPageTitle;
   font-weight: bold;
-  margin: 0;
+  margin: 0 0 15px;
+}
+
+.page-subtitle {
+  @extend .page-title;
+  font-size: $fontSizeLarge;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.tooltip-icon {
+  color: $colorInfo
 }

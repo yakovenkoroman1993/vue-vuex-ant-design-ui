@@ -2,7 +2,6 @@
     <app-layout>
         <h1 class="page-title">{{$t('files.title')}}</h1>
         <el-tabs
-            id="file-types-tabs"
             :value="activeType"
             @tab-click="onFilesStateUpdate({activeType: $event.name})"
         >
@@ -78,28 +77,7 @@
 
 <style lang="scss" scoped>
     @import "../design/theme/vars.scss";
-
-    #file-types-tabs {
-        margin-top: 15px;
-    }
-
     div[id^=pane-] {
         height: calc(100vh - 252px);
     }
 </style>
-
-<!--
-<style lang="scss">
-    #file-types-tabs div[id^=tab-] {
-        /*min-width: 70px;*/
-        /*padding-left: 20px;*/
-        /*text-align: center;*/
-        /*padding: 0;*/
-        /*padding: 0 20px;*/
-    }
-
-    #file-types-tabs .is-top {
-        min-width: 70px;
-    }
-</style>
--->

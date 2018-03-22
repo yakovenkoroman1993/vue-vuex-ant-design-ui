@@ -1,7 +1,12 @@
 import {FILES} from '../types';
 import {assignToState} from '../../helpers/state.helper';
-import {FILE_TYPES, FILE_STATUSES, FILE_TRANSPORTS} from './../types/files.types';
 import format from 'date-fns/format';
+import {
+    FILE_TYPES,
+    FILE_STATUSES,
+    FILE_TRANSPORTS,
+    FILE_EXTENSIONS,
+} from './../types/files.types';
 
 let defaultState = {
     items: [{
@@ -117,6 +122,7 @@ let defaultState = {
     activeStatus: null,
     transports: Object.values(FILE_TRANSPORTS),
     activeTransport: null,
+    fileExtensions: Object.values(FILE_EXTENSIONS),
 };
 
 let getters = {

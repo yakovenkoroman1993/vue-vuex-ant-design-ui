@@ -4,12 +4,13 @@ import {APP} from '../types';
 let defaultState = {
     isLoading: false,
     authenticated: true,
+    // notifications: [],
 };
 
 let getters = {};
 
 let mutations = {
-    [APP.TOGGLE_LOADING]: assignToState
+    [APP.TOGGLE_LOADING]: assignToState,
 };
 
 let actions = {};

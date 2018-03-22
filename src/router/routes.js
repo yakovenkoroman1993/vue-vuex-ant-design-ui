@@ -2,12 +2,14 @@ import SignIn from '../containers/SignIn';
 import NotFound from '../containers/NotFound';
 import Files from '../containers/Files';
 import Calendar from '../containers/Calendar';
+import Configuration from '../containers/Configuration';
 
 export const ROUTES = {
     HOME: 'listView',
     CALENDAR: 'calendar',
     SIGN_IN: 'authentication',
-    PAGE_404: 'notFound'
+    PAGE_404: 'notFound',
+    CONFIGURATION: 'configuration',
 };
 
 export default [
@@ -25,6 +27,11 @@ export default [
         path: '/calendar',
         name: ROUTES.CALENDAR,
         component: Calendar
+    },
+    {
+        path: '/configuration',
+        name: ROUTES.CONFIGURATION,
+        component: Configuration
     },
     {
         name: ROUTES.PAGE_404,

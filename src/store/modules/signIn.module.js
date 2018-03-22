@@ -21,8 +21,7 @@ let actions = {
                 errorMessage: ''
             });
         },
-        success({commit, rootState}, {response}) {
-            console.log(`*** response`, response);
+        success({commit, rootState}) {
             let {login} = rootState.signIn;
             if (login === 'test') {
                 return;

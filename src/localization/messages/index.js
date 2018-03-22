@@ -6,6 +6,7 @@ import validation from './validation';
 import signIn from './signIn';
 import files from './files';
 import calendar from './calendar';
+import configuration from './configuration';
 
 function requireMessages(scope) {
     return _merge(
@@ -19,6 +20,7 @@ function requireMessages(scope) {
 
 export default requireMessages({
     applicationLayout,
+    configuration,
     validation,
     calendar,
     signIn,

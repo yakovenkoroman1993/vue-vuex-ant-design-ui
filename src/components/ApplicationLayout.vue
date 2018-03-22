@@ -1,52 +1,79 @@
 <template>
     <el-container>
         <el-header id="header">
-            <el-row type="flex" justify="space-between" align="middle">
+            <el-row type="flex" justify="space-between" align="middle" class="header-first-part">
                 <el-row type="flex" align="middle">
-                    <el-row id="image-box">
+                    <el-row>
                         <img :src="require('../images/logo-white.png')" />
                     </el-row>
-                    <el-menu
-                        id="menu"
-                        mode="horizontal"
-                        :default-active="activeRoute"
-                        :background-color="colorAppHeader"
-                        active-text-color="white"
-                        text-color="white"
-                    >
-                        <el-menu-item
-                            v-for="name in routeNames"
-                            :key="name"
-                            :index="name"
-                            @click="handleNavigate(name)"
+
+                    <el-row type="flex" justify="space-between" align="middle">
+                        <el-menu
+                            class="menu"
+                            mode="horizontal"
+                            :default-active="activeRoute"
+                            :background-color="colorAppHeader"
+                            active-text-color="white"
+                            text-color="white"
                         >
-                            {{$t(`applicationLayout.menuNavigationItems.${name}`)}}
-                        </el-menu-item>
-                    </el-menu>
+                            <el-menu-item
+                                v-for="name in menuItems"
+                                :key="name"
+                                :index="name"
+                                @click="handleNavigate(name)"
+                            >
+                                {{$t(`applicationLayout.menuNavigationItems.${name}`)}}
+                            </el-menu-item>
+                        </el-menu>
+                    </el-row>
                 </el-row>
 
                 <el-row type="flex" align="middle" justify="end" class="header-second-part">
                     <el-col :span="4">
-                        <el-row type="flex" justify="space-around" align="middle">
-                            <a href="" @click.prevent class="upload-file-link">
-                                <span>+</span>
-                                <span>
-                                    {{$t('applicationLayout.headerActionLinks.uploadFile')}}
-                                </span>
-                            </a>
-
-                            <a href="" @click.prevent class="settings-link">
-                                <i class="el-icon-setting" />
-                            </a>
+                        <el-row type="flex" class="header-actions">
+                            <el-button type="text">
+                                {{$t('applicationLayout.headerActions.uploadFile')}}
+                            </el-button>
+                            <el-button type="text">
+                                {{$t('applicationLayout.headerActions.changeClient')}}
+                            </el-button>
                         </el-row>
                     </el-col>
-
-                    <el-row type="flex" align="middle">
-                        <div class="profile-avatar" />
-                        <span class="profile-label">
-                            {{firstName}} {{lastName}}, {{jobTitle}}
-                        </span>
-                    </el-row>
+                    <el-col :span="1">
+                        <el-menu
+                            class="menu"
+                            mode="horizontal"
+                            :default-active="activeRoute"
+                            :background-color="colorAppHeader"
+                            active-text-color="white"
+                            text-color="white"
+                        >
+                            <el-menu-item
+                                v-for="{name, iconClass} in iconMenuItems"
+                                :key="name"
+                                :index="name"
+                                class="menu-item-icon"
+                                @click="handleNavigate(name)"
+                            >
+                                <el-button type="text">
+                                    <i :class="iconClass" />
+                                </el-button>
+                            </el-menu-item>
+                        </el-menu>
+                    </el-col>
+                    <el-col :span="3">
+                        <el-row type="flex" align="middle">
+                            <el-row class="profile-avatar" />
+                            <el-row style="width: 60%">
+                                <div class="profile-title ellipsis">
+                                    {{firstName}} {{lastName}}
+                                </div>
+                                <div class="profile-subtitle ellipsis">
+                                    <small>{{jobTitle}}</small>
+                                </div>
+                            </el-row>
+                        </el-row>
+                    </el-col>
                 </el-row>
             </el-row>
         </el-header>
@@ -68,20 +95,24 @@
 
 <script>
     import {mapState} from 'vuex';
-    import styleVaribles from '../design/theme/vars.scss';
+    import styleVariables from '../design/theme/vars.scss';
     import _pick from 'lodash/pick';
     import {ROUTES} from '../router/routes';
 
     export default {
         data() {
             return {
-                ..._pick(styleVaribles, [
+                ..._pick(styleVariables, [
                     'colorAppHeader',
                 ]),
-                routeNames: [
+                menuItems: [
                     ROUTES.HOME,
                     ROUTES.CALENDAR,
-                ]
+                ],
+                iconMenuItems: [{
+                    name: ROUTES.CONFIGURATION,
+                    iconClass: 'el-icon-setting'
+                }]
             };
         },
         computed: {
@@ -117,20 +148,39 @@
     #header {
         height: $headerHeight !important;
         background-color: $colorAppHeader;
+
+        .header-first-part {
+            img {
+                margin-right: 20px;
+            }
+        }
+
         .header-second-part {
             flex-grow: 1;
+            .header-actions {
+                button {
+                    color: white;
+                }
+            }
         }
-    }
 
-    #menu {
-        li.is-active {
-            background-color: $colorPrimary !important;
-            border-bottom-color: $colorPrimary !important;
+        .menu {
+            li.menu-item-icon {
+                width: $widthMenuItemIcon;
+                i {
+                    font-size: x-large;
+                    color: lightgray;
+                }
+                &.is-active i {
+                    color: white;
+                }
+            }
+
+            li.is-active {
+                background-color: $colorPrimary !important;
+                border-bottom-color: $colorPrimary !important;
+            }
         }
-    }
-
-    #image-box {
-        margin-right: 20px;
     }
 
     .main {
@@ -141,24 +191,18 @@
     .profile-avatar {
         border-radius: 50%;
         background-color: #edeff0;
-        width: $iconHeight;
-        height: $iconHeight;
+        width: $avatarHeight;
+        height: $avatarHeight;
         margin: 0 10px;
     }
 
-    .profile-label {
+    .profile-title {
         color: white;
     }
 
-    .settings-link {
-        font-size: $iconHeight;
+    .profile-subtitle {
         color: lightgray;
     }
-
-    .upload-file-link {
-        color: white;
-    }
-
 </style>
 
 <style>

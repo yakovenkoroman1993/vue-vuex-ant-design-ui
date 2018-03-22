@@ -7,6 +7,10 @@ export default {
             valid: 'Valid',
             invalid: 'Invalid'
         },
+        placeholders: {
+            transportSelect: 'Select file transport',
+            fileExtensionSelect: 'Select file extension',
+        },
         types: {
             sales: 'Sales',
             outbound: 'Outbound',

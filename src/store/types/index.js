@@ -6,6 +6,8 @@ let asRequestAction = (prefix) => ({
 
 export const APP = {
     TOGGLE_LOADING: 'TOGGLE_LOADING',
+    // SHOW_NOTIFICATION: 'SHOW_NOTIFICATION',
+    // HIDE_NOTIFICATION: 'HIDE_NOTIFICATION',
 };
 
 export const TODO_FORM = {
@@ -34,4 +36,9 @@ export const CALENDAR = {
 
 export const COMPLEX_FORM = {
     UPDATE: 'UPDATE',
+};
+
+export const CONFIGURATION = {
+    UPDATE: 'UPDATE',
+    UPDATE_ACTION: asRequestAction('UPDATE'),
 };
