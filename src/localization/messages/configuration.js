@@ -1,4 +1,5 @@
 import {SCHEDULE_TYPES, SCHEDULE_ENDS_OPTIONS} from '../../store/types/configuration.types';
+import {NOTIFICATIONS} from '../../helpers/notification.helper';
 
 export default {
     en: {
@@ -22,6 +23,14 @@ export default {
         },
         tooltips: {
             stopUpload: 'Stop Future Files Upload'
+        },
+        notifications: {
+            save: {
+                [NOTIFICATIONS.SUCCESS]: {
+                    title: 'Success!',
+                    message: 'Configuration saved successfully',
+                }
+            }
         },
         scheduleEndsGroup: {
             labels: {

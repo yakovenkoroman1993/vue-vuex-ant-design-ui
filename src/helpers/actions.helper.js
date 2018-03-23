@@ -1,11 +1,20 @@
-export function makeRequestAction(requestActionTypes, {
+import {multipleCall} from '../helpers';
+import {notify, NOTIFICATIONS} from './notification.helper';
+
+export function makeRequestAction({REQUEST, SUCCESS, ERROR}, {
     before = Function(),
     success = Function(),
-    failure = Function(),
+    error = Function(),
 } = {}) {
     return {
-        [requestActionTypes.REQUEST]: before,
-        [requestActionTypes.SUCCESS]: success,
-        [requestActionTypes.FAILURE]: failure,
+        [REQUEST]: before,
+        [SUCCESS]: multipleCall(
+            notify(NOTIFICATIONS.SUCCESS),
+            success
+        ),
+        [ERROR]: multipleCall(
+            notify(NOTIFICATIONS.ERROR),
+            error
+        ),
     };
 }

@@ -31,7 +31,7 @@ let actions = {
                 errorMessage: 'Incorrect login or password'
             });
         },
-        failure({commit}, error) {
+        error({commit}, error) {
             commit(SIGN_IN.UPDATE, {
                 errorMessage: `Unknown error: ${error.message}`
             });

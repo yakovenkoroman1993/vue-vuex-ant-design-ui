@@ -17,9 +17,9 @@
                     v-bind="pickStateForFilesDataTable()"
                 />
             </el-tab-pane>
-            <el-tab-pane name="outbound" :label="$t('files.types.outbound')">
+            <el-tab-pane name="inventory" :label="$t('files.types.inventory')">
                 <files-data-table
-                    v-if="activeType === 'outbound'"
+                    v-if="activeType === 'inventory'"
                     v-bind="pickStateForFilesDataTable()"
                 />
             </el-tab-pane>

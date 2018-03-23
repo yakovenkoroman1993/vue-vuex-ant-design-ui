@@ -49,7 +49,7 @@ let actions = {
         }
     }),
     ...makeRequestAction(TODOS_INFO.UPDATE_TODO_ACTION, {
-        success({commit}, {response, request: {params: nextTodo}}) {
+        success({commit}, {request: {params: nextTodo}}) {
             commit(TODOS_INFO.UPDATE_TODO, nextTodo);
         }
     }),

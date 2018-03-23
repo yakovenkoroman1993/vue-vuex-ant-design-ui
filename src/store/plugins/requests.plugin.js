@@ -23,7 +23,7 @@ export default (store) => {
             });
         }
         catch (error) {
-            store.dispatch(`${baseActionName}_FAILURE`, error);
+            store.dispatch(`${baseActionName}_ERROR`, error);
         }
         finally {
             store.commit(APP.TOGGLE_LOADING, {isLoading: false}, inGlobalNamespace);

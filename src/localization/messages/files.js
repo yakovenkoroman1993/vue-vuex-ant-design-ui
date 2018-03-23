@@ -13,7 +13,7 @@ export default {
         },
         types: {
             sales: 'Sales',
-            outbound: 'Outbound',
+            inventory: 'Inventory',
             remittance: 'Remittance'
         },
         transports: {

@@ -358,7 +358,10 @@
             }),
             ...mapActions('configuration', {
                 handleSaveClick(dispatch) {
-                    dispatch(save(this.$store.state.configuration));
+                    dispatch(save(
+                        this.$store.state.configuration,
+                        this.$t('configuration.notifications.save')
+                    ));
                 }
             })
         }

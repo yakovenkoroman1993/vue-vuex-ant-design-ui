@@ -1,6 +1,6 @@
 export const FILE_TYPES = {
     SALES: 'sales',
-    OUTBOUND: 'outbound',
+    INVENTORY: 'inventory',
     REMITTANCE: 'remittance'
 };
 

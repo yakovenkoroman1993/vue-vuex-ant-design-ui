@@ -1,13 +1,11 @@
 let asRequestAction = (prefix) => ({
     REQUEST: `${prefix}_REQUEST`,
     SUCCESS: `${prefix}_SUCCESS`,
-    FAILURE: `${prefix}_FAILURE`
+    ERROR: `${prefix}_ERROR`
 });
 
 export const APP = {
     TOGGLE_LOADING: 'TOGGLE_LOADING',
-    // SHOW_NOTIFICATION: 'SHOW_NOTIFICATION',
-    // HIDE_NOTIFICATION: 'HIDE_NOTIFICATION',
 };
 
 export const TODO_FORM = {

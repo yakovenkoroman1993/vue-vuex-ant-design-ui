@@ -8,6 +8,12 @@ export function pipe(...fns) {
     );
 }
 
+export function multipleCall(...fns) {
+    return (...args) => (
+        fns.forEach((fn) => fn(...args))
+    );
+}
+
 export function arrayToBooleanMap(keys, values = []) {
     return keys.reduce((map, value) => {
         map[value] = values.includes(value);
