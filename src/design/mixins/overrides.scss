@@ -1,0 +1,19 @@
+@import "../theme/vars";
+
+@mixin overrideDialogStyle() {
+  .el-dialog {
+    .el-dialog__header {
+      @extend hr;
+      padding: 15px 20px;
+      .el-dialog__title {
+        font-weight: bold;
+      }
+    }
+    .el-dialog__body {
+      @extend hr;
+    }
+    .el-dialog__footer {
+      padding-bottom: 10px;
+    }
+  }
+}

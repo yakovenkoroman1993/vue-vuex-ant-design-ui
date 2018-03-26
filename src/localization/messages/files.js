@@ -10,6 +10,10 @@ export default {
         placeholders: {
             transportSelect: 'Select file transport',
             fileExtensionSelect: 'Select file extension',
+            periodDatePickerSeparator: 'To',
+            periodDatePickerStart: 'Start date',
+            periodDatePickerEnd: 'End date',
+
         },
         types: {
             sales: 'Sales',

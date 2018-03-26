@@ -7,6 +7,8 @@ import files from './modules/files.module';
 import userProfile from './modules/userProfile.module';
 import calendar from './modules/calendar.module';
 import configuration from './modules/configuration.module';
+import dialogs from './modules/dialogs.module';
+import clients from './modules/clients.module';
 
 Vue.use(Vuex);
 
@@ -19,6 +21,8 @@ export default new Vuex.Store({
         configuration,
         userProfile,
         calendar,
+        clients,
+        dialogs,
         signIn,
         files,
         app

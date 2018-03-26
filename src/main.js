@@ -5,6 +5,7 @@ import store from './store';
 import router from './router';
 import i18n from './localization';
 import './plugins';
+import './components';
 
 new Vue({
     el: '#app',

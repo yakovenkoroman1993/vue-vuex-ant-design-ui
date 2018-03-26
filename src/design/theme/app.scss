@@ -1,4 +1,6 @@
 @import "vars";
+@import "../mixins/colors";
+@import "../mixins/overrides";
 
 body {
   background-color: #edeff0;
@@ -18,6 +20,9 @@ hr {
   border-style: hidden;
   border-bottom: 1px solid $borderColorLighter;
 }
+
+@include generateColorTextClasses();
+@include overrideDialogStyle();
 
 .page-title {
   font-size: $fontSizePageTitle;

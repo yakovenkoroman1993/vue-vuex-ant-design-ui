@@ -29,14 +29,13 @@
                 </el-row>
 
                 <el-row type="flex" align="middle" justify="end" class="header-second-part">
-                    <el-col :span="4">
+                    <el-col :span="2">
                         <el-row type="flex" class="header-actions">
-                            <el-button type="text">
-                                {{$t('applicationLayout.headerActions.uploadFile')}}
-                            </el-button>
-                            <el-button type="text">
-                                {{$t('applicationLayout.headerActions.changeClient')}}
-                            </el-button>
+                            <app-dialog-shower
+                                :title="$t('applicationLayout.headerActions.changeClient')"
+                                :dialog-name="DIALOGS_NAMES.RETAILER_CHANGE"
+                                type="text"
+                            />
                         </el-row>
                     </el-col>
                     <el-col :span="1">
@@ -82,6 +81,16 @@
                 <span v-loading.fullscreen.lock="true" />
             </template>
             <slot />
+
+            <app-upload-dialog :name="DIALOGS_NAMES.FILES_UPLOAD" />
+            <app-list-dialog
+                :name="DIALOGS_NAMES.RETAILER_CHANGE"
+                :items="retailers"
+                :query="searchQuery"
+                :selected="activeRetailerId"
+                @change="onClientsStateUpdate({activeRetailerId: $event})"
+                @search="onClientsStateUpdate({query: $event})"
+            />
         </el-main>
         <!--
         <el-footer>
@@ -94,10 +103,12 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState, mapMutations, mapGetters} from 'vuex';
     import styleVariables from '../design/theme/vars.scss';
     import _pick from 'lodash/pick';
     import {ROUTES} from '../router/routes';
+    import {DIALOGS_NAMES} from '../store/types/dialogs.types';
+    import {MUTATION_UPDATE} from '../store/types';
 
     export default {
         data() {
@@ -112,7 +123,8 @@
                 iconMenuItems: [{
                     name: ROUTES.CONFIGURATION,
                     iconClass: 'el-icon-setting'
-                }]
+                }],
+                DIALOGS_NAMES,
             };
         },
         computed: {
@@ -123,6 +135,15 @@
                 'firstName',
                 'lastName',
                 'jobTitle',
+            ]),
+            ...mapState('clients', [
+                'activeRetailerId',
+            ]),
+            ...mapState('clients', {
+                searchQuery: 'query',
+            }),
+            ...mapGetters('clients', [
+                'retailers',
             ]),
             activeRoute() {
                 return this.$route.name;
@@ -137,7 +158,10 @@
         methods: {
             handleNavigate(routeName) {
                 this.$router.push({name: routeName});
-            }
+            },
+            ...mapMutations('clients', {
+                onClientsStateUpdate: MUTATION_UPDATE
+            }),
         }
     }
 </script>
@@ -148,13 +172,11 @@
     #header {
         height: $headerHeight !important;
         background-color: $colorAppHeader;
-
         .header-first-part {
             img {
                 margin-right: 20px;
             }
         }
-
         .header-second-part {
             flex-grow: 1;
             .header-actions {

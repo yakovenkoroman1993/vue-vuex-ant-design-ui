@@ -18,18 +18,18 @@
                 :name="type"
                 :label="$t(`files.types.${type}`)"
             >
-                <div v-if="type === activeTab">
-                    <el-row>
+                <div class="tab-pane-content" v-if="type === activeTab">
+                    <el-row type="flex" align="middle">
                         <el-col :span="3">
                             <b>{{$t('configuration.labels.schedule')}}</b>
                         </el-col>
                         <el-switch
-                            :value="scheduleSwitches.first"
-                            @change="handleConfigurationStateUpdate({scheduleSwitches: {first: $event}})"
+                            :value="switches.schedule"
+                            @change="handleConfigurationStateUpdate({switches: {schedule: $event}})"
                         />
                     </el-row>
-                    <br />
-                    <el-form :disabled="!scheduleSwitches.first" class="section">
+                    <el-collapse-transition>
+                        <el-form v-show="switches.schedule" class="section">
                         <el-form-item>
                             <el-row>
                                 <el-col style="width: 8%">
@@ -44,20 +44,14 @@
                                     />
                                 </el-col>
                                 <el-col :span="3">
-                                    <el-select
-                                        size="small"
+                                    <app-select
                                         :value="activeScheduleType"
-                                        @change="handleConfigurationStateUpdate({activeScheduleType: $event})"
+                                        :options="scheduleTypes"
                                         :placeholder="$t('configuration.placeholders.scheduleTypeSelect')"
+                                        labels-locale="configuration.scheduleTypes"
+                                        @change="handleConfigurationStateUpdate({activeScheduleType: $event})"
                                         clearable
-                                    >
-                                        <el-option
-                                            v-for="type in scheduleTypes"
-                                            :key="type"
-                                            :label="$t(`configuration.scheduleTypes.${type}`)"
-                                            :value="type"
-                                        />
-                                    </el-select>
+                                    />
                                 </el-col>
                             </el-row>
                         </el-form-item>
@@ -102,12 +96,12 @@
                                     <spacer vertical :size="40" />
                                     <el-date-picker
                                         :disabled="activeScheduleEndsOption !== scheduleEndsOptions[1]"
-                                        v-model="scheduleEndsOnDate"
+                                        :value="scheduleEndsOnDate"
                                         size="small"
                                         type="date"
                                         value-format="timestamp"
-                                        @change="handleConfigurationStateUpdate({scheduleEndsOnDate: $event})"
                                         placeholder="Date"
+                                        @input="handleConfigurationStateUpdate({scheduleEndsOnDate: $event})"
                                     />
 
                                     <el-input-number
@@ -122,37 +116,34 @@
                             </el-row>
                         </el-form-item>
                     </el-form>
-                    <br />
-                    <el-row>
+                    </el-collapse-transition>
+
+                    <el-row type="flex" align="middle">
                         <el-col :span="3">
                             <b>{{$t('configuration.labels.transport')}}</b>
                         </el-col>
-                        <el-select
-                            size="small"
+                        <app-select
                             :value="activeTransport"
+                            :options="transports"
                             @change="handleConfigurationStateUpdate({activeTransport: $event})"
                             :placeholder="$t('files.placeholders.transportSelect')"
+                            labels-locale="files.transports"
                         >
-                            <el-option
-                                v-for="transport in transports"
-                                :key="transport"
-                                :label="$t('files.transports')[transport]"
-                                :value="transport"
-                            />
-                        </el-select>
+
+                        </app-select>
                     </el-row>
-                    <br />
-                    <el-row>
+
+                    <el-row type="flex" align="middle">
                         <el-col :span="3">
-                            <b>{{$t('configuration.labels.fileSizeSwitch')}}</b>
+                            <b>{{$t('configuration.labels.fileSizeRange')}}</b>
                         </el-col>
                         <el-switch
-                            :value="isFileSizeAdjusting"
-                            @change="handleConfigurationStateUpdate({isFileSizeAdjusting: $event})"
+                            :value="switches.fileSizeRange"
+                            @change="handleConfigurationStateUpdate({switches: {fileSizeRange: $event}})"
                         />
                     </el-row>
-                    <br />
-                    <el-form :disabled="!isFileSizeAdjusting" class="section">
+                    <el-collapse-transition>
+                        <el-form v-show="switches.fileSizeRange" class="section">
                         <el-form-item>
                             <el-col :span="3">
                                 <span>{{$t('configuration.labels.fileSize')}}</span>
@@ -185,21 +176,22 @@
                             </el-col>
                         </el-form-item>
                     </el-form>
-                    <br />
-                    <el-row>
+                    </el-collapse-transition>
+
+                    <el-row type="flex" align="middle">
                         <el-col :span="3">
-                            <b>{{$t('configuration.labels.schedule')}}</b>
+                            <b>{{$t('configuration.labels.filesRange')}}</b>
                         </el-col>
                         <el-switch
-                            :value="scheduleSwitches.second"
-                            @change="handleConfigurationStateUpdate({scheduleSwitches: {second: $event}})"
+                            :value="switches.filesRange"
+                            @change="handleConfigurationStateUpdate({switches: {filesRange: $event}})"
                         />
                     </el-row>
-                    <br />
-                    <el-form :disabled="!scheduleSwitches.second" class="section">
+                    <el-collapse-transition>
+                        <el-form v-show="switches.filesRange" class="section">
                         <el-form-item>
                             <el-col :span="3">
-                                <span>{{$t('configuration.labels.filesPerPeriod')}}</span>
+                                <span>{{$t('configuration.labels.numberFilesPerPeriod')}}</span>
                             </el-col>
                             <el-col :span="2">
                                 <el-input-number
@@ -229,46 +221,43 @@
                             </el-col>
                         </el-form-item>
                     </el-form>
-                    <br />
-                    <el-row>
+                    </el-collapse-transition>
+
+                    <el-row type="flex" align="middle">
                         <el-col :span="3">
                             <b>{{$t('configuration.labels.fileExtension')}}</b>
                         </el-col>
-                        <el-select
-                            size="small"
+                        <app-select
                             :value="activeFileExtension"
-                            @change="handleConfigurationStateUpdate({activeFileExtension: $event})"
+                            :options="fileExtensions"
                             :placeholder="$t('files.placeholders.fileExtensionSelect')"
-                        >
-                            <el-option
-                                v-for="ext in fileExtensions"
-                                :key="ext"
-                                :label="ext.toUpperCase()"
-                                :value="ext"
-                            />
-                        </el-select>
-                    </el-row>
-                    <br />
-                    <el-row>
-                        <el-col :span="3">
-                            <b>{{$t('configuration.labels.schedule')}}</b>
-                        </el-col>
-                        <el-switch
-                            :value="scheduleSwitches.third"
-                            @change="handleConfigurationStateUpdate({scheduleSwitches: {third: $event}})"
+                            @change="handleConfigurationStateUpdate({activeFileExtension: $event})"
+                            clearable
                         />
                     </el-row>
-                    <br />
-                    <el-form :disabled="!scheduleSwitches.third" class="section">
-                        <el-form-item>
-                            <el-col :span="3">
-                                <span>{{$t('configuration.labels.invalidDataLevel')}}</span>
-                            </el-col>
-                            <el-col :span="6">
-                                <el-slider v-model="invalidDataLevel" show-input />
-                            </el-col>
-                        </el-form-item>
-                    </el-form>
+
+                    <el-row type="flex" align="middle">
+                        <el-col :span="3">
+                            <b>{{$t('configuration.labels.invalidDataLevel')}}</b>
+                        </el-col>
+                        <el-switch
+                            :value="switches.invalidDataLevel"
+                            @change="handleConfigurationStateUpdate({switches: {invalidDataLevel: $event}})"
+                        />
+                    </el-row>
+                    <el-collapse-transition>
+                        <el-form v-show="switches.invalidDataLevel" class="section">
+                            <el-form-item>
+                                <el-col :span="3">
+                                    <span>{{$t('configuration.labels.maxInvalidData')}}</span>
+                                </el-col>
+                                <el-col :span="6">
+                                    <el-slider v-model="invalidDataLevel" show-input />
+                                </el-col>
+                            </el-form-item>
+                        </el-form>
+                    </el-collapse-transition>
+
                     <el-row type="flex" align="middle">
                         <el-col :span="3">
                             <b>{{$t('configuration.labels.stopUpload')}}</b>
@@ -281,7 +270,6 @@
                                     <i class="tooltip-icon el-icon-info" />
                                 </el-button>
                             </el-tooltip>
-
                         </el-col>
                         <el-switch
                             :value="isStopUploading"
@@ -294,7 +282,6 @@
                             {{$t('configuration.labels.save')}}
                         </el-button>
                     </el-row>
-                    <br />
                 </div>
             </el-tab-pane>
         </el-tabs>
@@ -303,17 +290,11 @@
 
 <script>
     import {mapMutations, mapState, mapGetters, mapActions} from 'vuex';
-    import {CONFIGURATION} from '../store/types';
+    import {MUTATION_UPDATE} from '../store/types';
     import {mapStateWithMutation} from '../helpers/state.helper';
     import {save} from '../store/actions/configuration';
 
     export default {
-        data() {
-            let {scheduleEndsOnDate} = this.$store.state.configuration;
-            return {
-                scheduleEndsOnDate,
-            };
-        },
         computed: {
             ...mapGetters('configuration', [
                 'activeRepeatDays',
@@ -321,20 +302,20 @@
             ...mapState('configuration', [
                 'activeScheduleEndsOption',
                 'scheduleEndsOptions',
-                'isFileSizeAdjusting',
                 'activeFileExtension',
                 'activeScheduleType',
+                'scheduleEndsOnDate',
                 'occurrencesNumber',
-                'scheduleSwitches',
                 'isStopUploading',
                 'activeTransport',
                 'scheduleTypes',
                 'repeatNumber',
                 'transports',
                 'activeTab',
+                'switches',
             ]),
             // todo: after upgrade element-ui replace to simple mapState
-            ...mapStateWithMutation('configuration', CONFIGURATION.UPDATE, [
+            ...mapStateWithMutation('configuration', MUTATION_UPDATE, [
                 'invalidDataLevel',
                 'fileSizeRange',
                 'filesRange',
@@ -354,7 +335,7 @@
         },
         methods: {
             ...mapMutations('configuration', {
-                handleConfigurationStateUpdate: CONFIGURATION.UPDATE,
+                handleConfigurationStateUpdate: MUTATION_UPDATE,
             }),
             ...mapActions('configuration', {
                 handleSaveClick(dispatch) {
@@ -363,42 +344,32 @@
                         this.$t('configuration.notifications.save')
                     ));
                 }
-            })
+            }),
         }
     }
 </script>
 
 <style lang="scss" scoped>
     @import "../design/theme/vars";
+    @import "../design/mixins/radio-group";
 
-    .tab-content {
-        border: 0;
-    }
-
-    .schedule-ends-radio-group {
-        display: flex;
-        flex-direction: column;
-        padding: 0 2px;
-
-        label {
-            margin: 0 !important;
-            height: 40px;
-            display: flex;
-            align-items: center;
-
-            &:last-child {
-                margin: 0;
-            }
-        }
-    }
+    @include verticalRadioGroupStyle('.schedule-ends-radio-group')
 
     b {
         font-size: $fontSizeBase;
     }
 
-    .section {
-        background-color: lighten(whitesmoke, 1%);
-        padding: 10px;
+    .tab-pane-content {
+        & > .el-row {
+            height: 40px;
+        }
+        .section {
+            margin-bottom: 10px;
+            padding: 10px 0;
+            &.hidden {
+                display: none;
+            }
+        }
     }
 
     .el-form-item {

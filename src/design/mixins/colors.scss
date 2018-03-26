@@ -1,0 +1,16 @@
+@import "../theme/vars";
+
+$map: (
+  "primary": $colorPrimary,
+  "warning": $colorWarning,
+  "danger": $colorDanger,
+  "info": $colorInfo,
+);
+
+@mixin generateColorTextClasses() {
+  @each $type, $color in $map {
+    .color-text-#{$type} {
+      color: $color !important;
+    }
+  }
+}

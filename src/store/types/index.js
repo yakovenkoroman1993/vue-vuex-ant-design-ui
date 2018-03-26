@@ -8,6 +8,8 @@ export const APP = {
     TOGGLE_LOADING: 'TOGGLE_LOADING',
 };
 
+export const MUTATION_UPDATE = 'UPDATE';
+
 export const TODO_FORM = {
     UPDATE: 'UPDATE',
 };

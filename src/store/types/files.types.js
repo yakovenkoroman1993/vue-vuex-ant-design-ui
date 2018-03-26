@@ -1,7 +1,7 @@
 export const FILE_TYPES = {
     SALES: 'sales',
+    REMITTANCE: 'remittance',
     INVENTORY: 'inventory',
-    REMITTANCE: 'remittance'
 };
 
 export const FILE_TRANSPORTS = {

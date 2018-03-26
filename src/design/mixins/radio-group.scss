@@ -1,0 +1,20 @@
+@import "../theme/vars";
+
+@mixin verticalRadioGroupStyle($className: '.vertical-radio-group') {
+  #{$className} {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2px;
+
+    label {
+      margin: 0 !important;
+      height: 40px;
+      display: flex;
+      align-items: center;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+}

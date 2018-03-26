@@ -13,20 +13,14 @@
 
         <el-row type="flex">
             <el-col :span="3">
-                <el-select
-                    size="small"
+                <app-select
                     :value="activeStatus"
-                    @change="onFilesStateUpdate({activeStatus: $event})"
+                    :options="statuses"
                     placeholder="Status"
+                    labels-locale="files.statuses"
+                    @change="onFilesStateUpdate({activeStatus: $event})"
                     clearable
-                >
-                    <el-option
-                        v-for="status in statuses"
-                        :key="status"
-                        :label="$t('files.statuses')[status]"
-                        :value="status"
-                    />
-                </el-select>
+                />
             </el-col>
             <el-col :span="3">
                 <el-date-picker
@@ -36,41 +30,38 @@
                 />
             </el-col>
             <el-col :span="3">
-                <el-select
-                    size="small"
+                <app-select
                     :value="activeUploader"
-                    @change="onFilesStateUpdate({activeUploader: $event})"
+                    :options="uploaders"
                     placeholder="Uploaded by"
+                    @change="onFilesStateUpdate({activeUploader: $event})"
                     clearable
-                >
-                    <el-option
-                        v-for="uploader in uploaders"
-                        :key="uploader"
-                        :label="uploader"
-                        :value="uploader"
-                    />
-                </el-select>
+                />
             </el-col>
             <el-col :span="3">
-                <el-select
-                    size="small"
+                <app-select
                     :value="activeTransport"
-                    @change="onFilesStateUpdate({activeTransport: $event})"
+                    :options="transports"
                     placeholder="Transport"
+                    labels-locale="files.transports"
+                    @change="onFilesStateUpdate({activeTransport: $event})"
                     clearable
-                >
-                    <el-option
-                        v-for="transport in transports"
-                        :key="transport"
-                        :label="$t('files.transports')[transport]"
-                        :value="transport"
-                    />
-                </el-select>
+                />
+            </el-col>
+            <el-col :span="3">
+                <el-date-picker
+                    size="small"
+                    type="daterange"
+                    value-format="timestamp"
+                    :value="activeCreatedAtPeriod"
+                    :range-separator="$t('files.placeholders.periodDatePickerSeparator')"
+                    :start-placeholder="$t('files.placeholders.periodDatePickerStart')"
+                    :end-placeholder="$t('files.placeholders.periodDatePickerEnd')"
+                    @input="onFilesStateUpdate({activeCreatedAtPeriod: $event})"
+                />
             </el-col>
         </el-row>
-
         <br />
-
         <el-row>
             <el-checkbox
                 :value="isShowFilesWithIssuesOnly"
@@ -79,9 +70,7 @@
                 {{$t('files.checkboxes.isShowFilesWithIssuesOnly')}}
             </el-checkbox>
         </el-row>
-
         <br />
-
         <data-tables
             :table-props="tableOptions"
             :data="files"
@@ -146,7 +135,7 @@
                                 <el-dropdown-item>Download Original</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
-                        <a href="" class="table-row-file-link" @click.prevent>
+                        <a href="" class="table-row-link" @click.prevent>
                             <i class="el-icon-arrow-right" />
                         </a>
                     </el-row>
@@ -170,11 +159,12 @@
                     pageSizes: [5, 10, 15],
                     currentPage: 1
                 },
-                dropdownActiveRow: null
+                dropdownActiveRow: null,
             };
         },
         props: [
             'isShowFilesWithIssuesOnly',
+            'activeCreatedAtPeriod',
             'onFilesStateUpdate',
             'activeTransport',
             'activeUploader',
@@ -212,8 +202,9 @@
                     activeTransport: null,
                     activeUploader: null,
                     activeStatus: null,
+                    activeCreatedAtPeriod: null
                 });
-            }
+            },
         }
     }
 </script>
@@ -221,10 +212,10 @@
 <style lang="scss" scoped>
     @import "../design/theme/vars";
     @import "../design/customization/data-tables-pagination";
+    @import "../design/mixins/table";
 
     .container {
         height: 100%;
-
         table {
             i.el-icon-success {
                 font-size: $fontSizeLarge;
@@ -235,22 +226,6 @@
                 color: $colorWarning
             }
         }
-
-        .table-row-actions-dropdown {
-            button {
-                color: $colorTextRegular;
-                font-size: $fontSizeBase;
-                padding: 5px;
-                &.active-dropdown-button:focus {
-                    background-color: $colorPrimary;
-                    color: white;
-                }
-            }
-        }
-
-        .table-row-file-link i {
-            color: $colorTextRegular;
-            font-size: $fontSizeLarger;
-        }
+        @include tableStyle();
     }
 </style>

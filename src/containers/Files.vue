@@ -1,25 +1,21 @@
 <template>
     <app-layout>
-        <h1 class="page-title">{{$t('files.title')}}</h1>
+        <el-row type="flex" justify="space-between" align="middle">
+            <h1 class="page-title">{{$t('files.title')}}</h1>
+            <app-dialog-shower :dialog-name="DIALOGS_NAMES.FILES_UPLOAD" />
+        </el-row>
         <el-tabs
             :value="activeType"
             @tab-click="onFilesStateUpdate({activeType: $event.name})"
         >
-            <el-tab-pane name="sales" :label="$t('files.types.sales')">
+            <el-tab-pane
+                v-for="type in types"
+                :key="type"
+                :name="type"
+                :label="$t(`files.types.${type}`)"
+            >
                 <files-data-table
-                    v-if="activeType === 'sales'"
-                    v-bind="pickStateForFilesDataTable()"
-                />
-            </el-tab-pane>
-            <el-tab-pane name="remittance" :label="$t('files.types.remittance')">
-                <files-data-table
-                    v-if="activeType === 'remittance'"
-                    v-bind="pickStateForFilesDataTable()"
-                />
-            </el-tab-pane>
-            <el-tab-pane name="inventory" :label="$t('files.types.inventory')">
-                <files-data-table
-                    v-if="activeType === 'inventory'"
+                    v-if="activeType === type"
                     v-bind="pickStateForFilesDataTable()"
                 />
             </el-tab-pane>
@@ -30,15 +26,23 @@
 <script>
     import _pick from 'lodash/pick';
     import {mapState, mapGetters, mapMutations} from 'vuex';
-    import {FILES} from '../store/types';
+    import {MUTATION_UPDATE} from '../store/types';
+    import {DIALOGS_NAMES} from '../store/types/dialogs.types';
     import FilesDataTable from '../components/FilesDataTable';
 
     export default {
-        components: {FilesDataTable},
-        name: 'files',
+        components: {
+            FilesDataTable,
+        },
+        data() {
+            return {
+                DIALOGS_NAMES
+            };
+        },
         computed: {
             ...mapState('files', [
                 'isShowFilesWithIssuesOnly',
+                'activeCreatedAtPeriod',
                 'activeTransport',
                 'activeUploader',
                 'activeStatus',
@@ -52,14 +56,18 @@
                 'total',
                 'files',
             ]),
+            ...mapState('dialogs', {
+                openFilesUploadDialog: DIALOGS_NAMES.FILES_UPLOAD
+            }),
         },
         methods: {
             ...mapMutations('files', {
-                onFilesStateUpdate: FILES.UPDATE
+                onFilesStateUpdate: MUTATION_UPDATE
             }),
             pickStateForFilesDataTable() {
                 return _pick(this, [
                     'isShowFilesWithIssuesOnly',
+                    'activeCreatedAtPeriod',
                     'onFilesStateUpdate',
                     'activeTransport',
                     'activeUploader',

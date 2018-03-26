@@ -1,5 +1,6 @@
-import {FILES} from '../types';
+import {MUTATION_UPDATE} from '../types';
 import {assignToState} from '../../helpers/state.helper';
+import addMonths from 'date-fns/add_months';
 import format from 'date-fns/format';
 import {
     FILE_TYPES,
@@ -12,7 +13,7 @@ let defaultState = {
     items: [{
         status: FILE_STATUSES.VALID,
         badRecordsNumber: 10,
-        createdAt: Date.now(),
+        createdAt: new Date(2018, 1, 20).getTime(),
         type: FILE_TYPES.REMITTANCE,
         name: 'remittance.csv',
         uploader: 'John Doe',
@@ -20,8 +21,8 @@ let defaultState = {
     }, {
         status: FILE_STATUSES.INVALID,
         badRecordsNumber: 10,
-        createdAt: Date.now(),
-        type: FILE_TYPES.SALES,
+        createdAt: new Date(2018, 1, 21).getTime(),
+        type: FILE_TYPES.INVENTORY,
         name: 'sales.txt',
         uploader: 'Norman Menz',
         transport: FILE_TRANSPORTS.AS2
@@ -123,6 +124,10 @@ let defaultState = {
     transports: Object.values(FILE_TRANSPORTS),
     activeTransport: null,
     fileExtensions: Object.values(FILE_EXTENSIONS),
+    activeCreatedAtPeriod: [
+        new Date().getTime(),
+        addMonths(new Date(), 1).getTime()
+    ],
 };
 
 let getters = {
@@ -141,6 +146,7 @@ let getters = {
             activeStatus,
             activeUploader,
             activeTransport,
+            activeCreatedAtPeriod,
             isShowFilesWithIssuesOnly,
         } = state;
 
@@ -161,6 +167,13 @@ let getters = {
         if (activeTransport) {
             filters.push(file => file.transport === activeTransport);
         }
+        if (activeCreatedAtPeriod && Array.isArray(activeCreatedAtPeriod)) {
+            filters.push(file => (
+                activeCreatedAtPeriod[0] < file.createdAt
+                &&
+                file.createdAt < activeCreatedAtPeriod[1]
+            ));
+        }
 
         return filters
             .reduce((result, filter) => result.filter(filter), items)
@@ -172,7 +185,7 @@ let getters = {
 };
 
 let mutations = {
-    [FILES.UPDATE]: assignToState
+    [MUTATION_UPDATE]: assignToState
 };
 
 let actions = {};

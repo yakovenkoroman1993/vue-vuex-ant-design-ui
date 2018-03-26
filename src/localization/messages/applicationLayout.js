@@ -7,7 +7,6 @@ export default {
             [ROUTES.CALENDAR]: 'CALENDAR',
         },
         headerActions: {
-            uploadFile: '+ UPLOAD FILE',
             changeClient: 'CHANGE CLIENT',
         }
     }

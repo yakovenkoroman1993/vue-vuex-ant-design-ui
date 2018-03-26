@@ -1,0 +1,19 @@
+@import "../theme/vars";
+
+@mixin tableStyle() {
+  .table-row-actions-dropdown {
+    button {
+      color: $colorTextRegular;
+      font-size: $fontSizeBase;
+      padding: 5px;
+      &.active-dropdown-button:focus {
+        background-color: $colorPrimary;
+        color: white;
+      }
+    }
+  }
+  .table-row-link i {
+    color: $colorTextRegular;
+    font-size: $fontSizeLarger;
+  }
+}
