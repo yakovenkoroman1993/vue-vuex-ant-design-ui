@@ -55,7 +55,7 @@
 
 <script>
     import {mapState, mapActions, mapMutations} from 'vuex';
-    import {SIGN_IN} from '../store/types';
+    import {MUTATION_UPDATE} from '../store/types';
     import {signIn} from '../store/actions/signIn.action';
 
     export default {
@@ -88,8 +88,18 @@
                 }
             };
         },
+        watch: {
+            redirectRoute(route) {
+                if (!route) {
+                    return;
+                }
+
+                this.$router.push(route);
+            },
+        },
         computed: {
             ...mapState('signIn', [
+                'redirectRoute',
                 'errorMessage',
                 'password',
                 'login',
@@ -97,7 +107,7 @@
         },
         methods: {
             ...mapMutations('signIn', {
-                onSignInStateUpdate: SIGN_IN.UPDATE
+                onSignInStateUpdate: MUTATION_UPDATE
             }),
             ...mapActions('signIn', {
                 handleSignIn(dispatch, login, password) {
@@ -110,7 +120,7 @@
                     });
                 }
             })
-        }
+        },
     }
 </script>
 

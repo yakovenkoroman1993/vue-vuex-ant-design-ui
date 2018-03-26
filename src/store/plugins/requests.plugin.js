@@ -1,7 +1,5 @@
-import {APP} from '../types';
+import {MUTATION_UPDATE} from '../types';
 import {fetch} from '../../helpers/ajax.helper';
-
-let inGlobalNamespace = {root: true};
 
 export default (store) => {
     store.subscribeAction(async ({payload: action, type}) => {
@@ -9,7 +7,7 @@ export default (store) => {
             return;
         }
 
-        store.commit(APP.TOGGLE_LOADING, {isLoading: true}, inGlobalNamespace);
+        store.commit(`app/${MUTATION_UPDATE}`, {isLoading: true});
 
         let {payload} = action;
 
@@ -26,7 +24,7 @@ export default (store) => {
             store.dispatch(`${baseActionName}_ERROR`, error);
         }
         finally {
-            store.commit(APP.TOGGLE_LOADING, {isLoading: false}, inGlobalNamespace);
+            store.commit(`app/${MUTATION_UPDATE}`, {isLoading: false});
         }
     });
 }

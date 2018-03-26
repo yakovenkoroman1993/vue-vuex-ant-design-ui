@@ -1,21 +1,22 @@
 import {assignToState} from '../../helpers/state.helper';
-import {APP} from '../types';
+import {MUTATION_UPDATE} from '../types';
 
 let defaultState = {
     isLoading: false,
     authenticated: true,
-    // notifications: [],
+    referrerRouteName: null,
 };
 
 let getters = {};
 
 let mutations = {
-    [APP.TOGGLE_LOADING]: assignToState,
+    [MUTATION_UPDATE]: assignToState,
 };
 
 let actions = {};
 
 export default {
+    namespaced: true,
     state: defaultState,
     getters,
     mutations,

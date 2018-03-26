@@ -1,5 +1,5 @@
 <template>
-    <el-button :type="type" @click="handleDialogOpen">
+    <el-button :size="size" :type="type" @click="handleDialogOpen">
         {{title}}
     </el-button>
 </template>
@@ -23,6 +23,10 @@
             type: {
                 type: String,
                 default: 'primary',
+            },
+            size: {
+                type: String,
+                default: 'small',
             },
         },
         methods: {

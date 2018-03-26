@@ -1,9 +1,11 @@
 <template>
     <el-dialog
-        v-if="open"
+        v-if="isOpen"
         :title="dialogTitle"
         :width="width"
         @close="handleDialogClose"
+        :show-close="!conserved"
+        :close-on-click-modal="!conserved"
         visible
     >
         <el-input
@@ -31,10 +33,15 @@
             </el-row>
         </virtual-list>
         <span slot="footer">
-            <el-button size="small" @click="handleDialogClose">
+            <el-button v-if="!conserved" size="small" @click="handleDialogClose">
                 {{closeText}}
             </el-button>
-            <el-button size="small" type="primary" @click="handleSelectionApply">
+            <el-button
+                size="small"
+                type="primary"
+                @click="handleSelectionApply"
+                :disabled="isDisabledApplyButton"
+            >
                 {{($t('dialogs.actions.select').toUpperCase())}}
             </el-button>
         </span>
@@ -54,6 +61,10 @@
             items: {
                 type: Array,
                 default: [],
+            },
+            resolveEmptySelection: {
+                type: Boolean,
+                default: false,
             },
             query: {
                 type: String,
@@ -94,6 +105,10 @@
                     );
                 }
             },
+            conserved: {
+                type: Boolean,
+                default: false,
+            }
         },
         data() {
             return {
@@ -102,10 +117,17 @@
         },
         computed: {
             ...mapState('dialogs', {
-                open(state) {
+                isOpen(state) {
                     return state[this.name];
                 }
             }),
+            isDisabledApplyButton() {
+                if (this.resolveEmptySelection) {
+                    return false;
+                }
+
+                return !this.preselectedIds.length;
+            }
         },
         methods: {
             ...mapMutations('dialogs', {

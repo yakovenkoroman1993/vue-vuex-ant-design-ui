@@ -1,7 +1,5 @@
 <template>
-    <app-layout>
-        <h1 class="page-title">{{$t('calendar.title')}}</h1>
-
+    <client-layout :title="$t('calendar.title')">
         <el-form :inline="true">
             <el-form-item :label="$t('calendar.labels.periodNumber')">
                 <el-input-number
@@ -31,7 +29,7 @@
         </el-form>
 
         <full-calendar :events="events" locale="en" />
-    </app-layout>
+    </client-layout>
 </template>
 
 <script>

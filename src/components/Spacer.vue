@@ -6,21 +6,23 @@
     export default {
         props: {
             size: {
-                type: Number,
+                type: [Number, String],
                 required: true,
             },
             vertical: {
                 type: Boolean,
                 default: false
             },
-            measure: {
-                type: String,
-                default: 'px'
-            }
         },
         methods: {
             getStyle() {
-                let {size, vertical, measure} = this;
+                let {size, vertical} = this;
+
+                let measure = '';
+                if (Number.isInteger(size)) {
+                    measure = 'px';
+                }
+
                 if (vertical) {
                     return {
                         height: size + measure

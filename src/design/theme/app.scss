@@ -24,18 +24,6 @@ hr {
 @include generateColorTextClasses();
 @include overrideDialogStyle();
 
-.page-title {
-  font-size: $fontSizePageTitle;
-  color: $colorPageTitle;
-  font-weight: bold;
-  margin: 0 0 15px;
-}
-
-.page-subtitle {
-  @extend .page-title;
-  font-size: $fontSizeLarge;
-}
-
 .ellipsis {
   text-overflow: ellipsis;
   white-space: nowrap;

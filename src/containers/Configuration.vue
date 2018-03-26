@@ -1,13 +1,5 @@
 <template>
-    <app-layout>
-        <el-row type="flex" justify="space-between" align="middle">
-            <h1 class="page-title">{{$t('configuration.title')}}</h1>
-            <p class="page-subtitle">
-                <span>{{$t('configuration.client')}}:</span>
-                <span>{{activeRetailer.firstName}} {{activeRetailer.lastName}}</span>
-            </p>
-        </el-row>
-
+    <app-layout :title="$t('configuration.title')">
         <el-tabs
             :value="activeTab"
             @tab-click="handleConfigurationStateUpdate({activeTab: $event.name})"
@@ -319,9 +311,6 @@
                 'invalidDataLevel',
                 'fileSizeRange',
                 'filesRange',
-            ]),
-            ...mapState('userProfile', [
-                'activeRetailer',
             ]),
             ...mapState('files', [
                 'fileExtensions',

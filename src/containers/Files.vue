@@ -1,9 +1,5 @@
 <template>
-    <app-layout>
-        <el-row type="flex" justify="space-between" align="middle">
-            <h1 class="page-title">{{$t('files.title')}}</h1>
-            <app-dialog-shower :dialog-name="DIALOGS_NAMES.FILES_UPLOAD" />
-        </el-row>
+    <client-layout :title="$t('files.title')">
         <el-tabs
             :value="activeType"
             @tab-click="onFilesStateUpdate({activeType: $event.name})"
@@ -20,7 +16,7 @@
                 />
             </el-tab-pane>
         </el-tabs>
-    </app-layout>
+    </client-layout>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
     <el-dialog
-        v-if="open"
+        v-if="isOpen"
         :title="dialogTitle"
         :width="width"
         @close="handleDialogClose"
@@ -84,7 +84,7 @@
         },
         computed: {
             ...mapState('dialogs', {
-                open(state) {
+                isOpen(state) {
                     return state[this.name];
                 }
             })

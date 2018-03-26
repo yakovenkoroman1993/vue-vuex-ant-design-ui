@@ -27,7 +27,6 @@
                         </el-menu>
                     </el-row>
                 </el-row>
-
                 <el-row type="flex" align="middle" justify="end" class="header-second-part">
                     <el-col :span="2">
                         <el-row type="flex" class="header-actions">
@@ -80,9 +79,17 @@
             <template v-if="isLoading">
                 <span v-loading.fullscreen.lock="true" />
             </template>
+
+            <el-row type="flex" justify="space-between" align="middle">
+                <slot name="title">
+                    <h1 class="page-title">{{title}}</h1>
+                </slot>
+
+                <slot name="clientProfile" />
+            </el-row>
+
             <slot />
 
-            <app-upload-dialog :name="DIALOGS_NAMES.FILES_UPLOAD" />
             <app-list-dialog
                 :name="DIALOGS_NAMES.RETAILER_CHANGE"
                 :items="retailers"
@@ -92,13 +99,7 @@
                 @search="onClientsStateUpdate({query: $event})"
             />
         </el-main>
-        <!--
-        <el-footer>
-            <el-row type="flex" justify="center">
-                This website is protected by copyright | Terms of Use, Disclaimers © The Nexxus Marketing Group®, LLC
-            </el-row>
-        </el-footer>
-        -->
+        <el-footer />
     </el-container>
 </template>
 
@@ -111,6 +112,9 @@
     import {MUTATION_UPDATE} from '../store/types';
 
     export default {
+        props: {
+            title: String,
+        },
         data() {
             return {
                 ..._pick(styleVariables, [
@@ -128,31 +132,24 @@
             };
         },
         computed: {
-            ...mapState({
-                isLoading: state => state.app.isLoading
-            }),
+            ...mapState('app', ['isLoading']),
             ...mapState('userProfile', [
                 'firstName',
                 'lastName',
                 'jobTitle',
             ]),
-            ...mapState('clients', [
-                'activeRetailerId',
-            ]),
             ...mapState('clients', {
                 searchQuery: 'query',
             }),
+            ...mapState('clients', [
+                'activeRetailerId',
+            ]),
             ...mapGetters('clients', [
+                'activeRetailer',
                 'retailers',
             ]),
             activeRoute() {
                 return this.$route.name;
-            }
-        },
-        beforeMount() {
-            let {app: {authenticated}} = this.$store.state;
-            if (!authenticated) {
-                this.$router.push('authentication');
             }
         },
         methods: {
@@ -162,7 +159,13 @@
             ...mapMutations('clients', {
                 onClientsStateUpdate: MUTATION_UPDATE
             }),
-        }
+        },
+        beforeMount() {
+            let {app: {authenticated}} = this.$store.state;
+            if (!authenticated) {
+                this.$router.push('authentication');
+            }
+        },
     }
 </script>
 
@@ -182,6 +185,13 @@
             .header-actions {
                 button {
                     color: white;
+                    height: 59px;
+                    padding: 0 15px;
+                    border: 0;
+                    border-radius: 0;
+                    &:hover {
+                        background-color: rgb(46, 74, 103);
+                    }
                 }
             }
         }
@@ -208,6 +218,13 @@
     .main {
         /* header + footer + padding top|bottom */
         height: calc(100vh - #{$headerHeight} - #{$footerHeight} - 2*20px);
+
+        .page-title {
+            font-size: $fontSizePageTitle;
+            color: $colorPageTitle;
+            font-weight: bold;
+            margin: 0 0 15px;
+        }
     }
 
     .profile-avatar {

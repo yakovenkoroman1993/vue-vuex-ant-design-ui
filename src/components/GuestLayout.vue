@@ -1,4 +1,4 @@
-<template>
+'<template>
     <el-container>
         <el-main class="main">
             <template v-if="isLoading">
@@ -14,9 +14,9 @@
 
     export default {
         computed: {
-            ...mapState({
-                isLoading: state => state.app.isLoading
-            }),
+            ...mapState('app', [
+                'isLoading'
+            ]),
         }
     }
 </script>

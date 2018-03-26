@@ -16,7 +16,7 @@ export default {
             uploadError: '<small>Oops! There is an error with <b>{fileName}</b> file. <br> Please see logs for more information.</small>',
         },
         [DIALOGS_NAMES.FILES_UPLOAD]: {
-            title: 'File Upload',
+            title: 'Upload file',
         },
         [DIALOGS_NAMES.RETAILER_CHANGE]: {
             title: 'Select Client from the List',

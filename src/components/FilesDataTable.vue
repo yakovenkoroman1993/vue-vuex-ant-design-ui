@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <el-row type="flex" align="middle">
+        <el-row type="flex" align="middle" justify="space-between">
             <el-col :span="1">
                 <h3>{{$t('files.filters')}}</h3>
             </el-col>
@@ -9,6 +9,11 @@
                     {{$t('files.filtersClear')}}
                 </a>
             </el-col>
+            <spacer size="100%" />
+            <app-dialog-shower
+                :dialog-name="DIALOGS_NAMES.FILES_UPLOAD"
+                :title="'+ ' + $t(`dialogs.${DIALOGS_NAMES.FILES_UPLOAD}.title`).toUpperCase()"
+            />
         </el-row>
 
         <el-row type="flex">
@@ -146,6 +151,8 @@
 </template>
 
 <script>
+    import {DIALOGS_NAMES} from '../store/types/dialogs.types';
+
     export default {
         name: 'files-data-table',
         data() {
@@ -160,6 +167,7 @@
                     currentPage: 1
                 },
                 dropdownActiveRow: null,
+                DIALOGS_NAMES,
             };
         },
         props: [
