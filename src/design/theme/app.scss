@@ -34,3 +34,10 @@ hr {
 .tooltip-icon {
   color: $colorInfo
 }
+
+.page-title {
+  font-size: $fontSizePageTitle;
+  color: $colorPageTitle;
+  font-weight: bold;
+  margin: 0 0 15px;
+}

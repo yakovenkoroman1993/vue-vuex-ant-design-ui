@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import ApplicationLayout from './ApplicationLayout';
+import ApplicationLayout from './ApplicationLayout/index';
 import ClientLayout from './ClientLayout';
 import GuestLayout from './GuestLayout';
 import Spacer from './Spacer';

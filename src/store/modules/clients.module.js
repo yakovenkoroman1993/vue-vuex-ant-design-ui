@@ -1,15 +1,15 @@
 import {assignToState} from '../../helpers/state.helper';
 import {MUTATION_UPDATE} from '../types';
 import {generateId} from '../../helpers';
-// let selectedId = generateId();
+let selectedId = generateId();
 
 let defaultState = {
     query: '',
-    // activeRetailerId: selectedId,
-    activeRetailerId: null,
+    activeRetailerId: selectedId,
+    // activeRetailerId: null,
     retailers: [{
-        // id: selectedId,
-        id: generateId(),
+        id: selectedId,
+        // id: generateId(),
         name: '7-Eleven'
     }, {
         id: generateId(),
