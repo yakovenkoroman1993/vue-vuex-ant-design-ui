@@ -22,7 +22,7 @@
                                 :index="name"
                                 @click="handleNavigate(name)"
                             >
-                                {{$t(`applicationLayout.menuNavigationItems.${name}`)}}
+                                {{$t(`app.menuNavigationItems.${name}`)}}
                             </el-menu-item>
                         </el-menu>
                     </el-row>
@@ -31,7 +31,7 @@
                     <el-col :span="2">
                         <el-row type="flex" class="header-actions">
                             <app-dialog-shower
-                                :title="$t('applicationLayout.headerActions.changeClient')"
+                                :title="$t('app.headerActions.changeClient')"
                                 :dialog-name="DIALOGS_NAMES.RETAILER_CHANGE"
                                 type="text"
                             />
@@ -99,7 +99,7 @@
                 @search="onClientsStateUpdate({query: $event})"
             />
         </el-main>
-        <el-footer />
+        <app-footer centered />
     </el-container>
 </template>
 
@@ -216,9 +216,7 @@
     }
 
     .main {
-        /* header + footer + padding top|bottom */
-        height: calc(100vh - #{$headerHeight} - #{$footerHeight} - 2*20px);
-
+        height: calc(100vh - 85px);
         .page-title {
             font-size: $fontSizePageTitle;
             color: $colorPageTitle;

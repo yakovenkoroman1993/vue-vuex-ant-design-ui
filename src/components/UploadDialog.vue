@@ -91,6 +91,10 @@
         },
         methods: {
             onError(event, file) {
+                // this.$notify.error({
+                //     title: 'Error',
+                //     message: this.$t(`dialogs.templates.uploadError`)
+                // });
                 this.errorMessage = this.$t(`dialogs.templates.uploadError`, {
                     fileName: file.name
                 });

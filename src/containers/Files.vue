@@ -82,6 +82,6 @@
 <style lang="scss" scoped>
     @import "../design/theme/vars.scss";
     div[id^=pane-] {
-        height: calc(100vh - 252px);
+        height: calc(100vh - 237px)
     }
 </style>

@@ -1,7 +1,7 @@
 import _merge from 'lodash/merge';
 import _set from 'lodash/set';
 import _map from 'lodash/map';
-import applicationLayout from './applicationLayout';
+import app from './app';
 import validation from './validation';
 import signIn from './signIn';
 import files from './files';
@@ -20,11 +20,11 @@ function requireMessages(scope) {
 }
 
 export default requireMessages({
-    applicationLayout,
     configuration,
     validation,
     calendar,
     dialogs,
     signIn,
-    files
+    files,
+    app,
 });
