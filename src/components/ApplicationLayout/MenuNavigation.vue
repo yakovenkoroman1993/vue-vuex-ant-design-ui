@@ -77,7 +77,6 @@
         .menu-item:hover {
             background-color: $colorAppNavHover !important;
         }
-
         .is-active {
             color: white;
             background-color: $colorAppNavActive !important;
@@ -94,5 +93,10 @@
         &:hover {
             background-color: $colorAppNavHover !important;
         }
+    }
+
+    .menu:not(.el-menu--collapse) {
+        width: 200px;
+        min-height: 400px;
     }
 </style>
