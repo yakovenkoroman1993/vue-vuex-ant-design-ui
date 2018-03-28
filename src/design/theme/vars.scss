@@ -1,5 +1,5 @@
 /* theme color */
-$--color-primary: #38c3d7;
+$--color-primary: #2b92e9;
 
 /* icon font path, required */
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
@@ -14,16 +14,24 @@ $colorDanger: $--color-danger;
 $colorHoverPrimary: $--color-primary-light-9;
 $colorFocusPrimary: $--color-primary-light-7;
 
-$colorAppHeader: #395d81;
-$colorAppFooter: #183253;
-$colorPageTitle: $colorAppHeader;
+$colorAppHeader: white;
+$colorAppFooter: #ecedf0;
+$colorAppNav: #1d2027;
+$colorAppNavActive: #585b61;
+$colorAppNavHover: #393c43;
+$colorPageTitle: #15171c;
+$colorTableHeader: #ddd;
 $colorTextRegular: $--color-text-regular;
+$colorTopPanel: #ecedf0;
+$colorTableHeaderText: #15171c;
+
 $borderColorLighter: $--border-color-lighter;
+$paddingHorizontalTopPanel: 25px;
 
 /* App sizes */
 $headerHeight: 60px;
 $avatarHeight: 30px;
-$heightFooter: 25px;
+$heightFooter: 60px;
 
 $widthMenuItemIcon: 64px;
 
@@ -38,4 +46,5 @@ $fontSizePageTitle: 36px;
 :export {
   colorPrimary: $colorPrimary;
   colorAppHeader: $colorAppHeader;
+  colorAppNav: $colorAppNav;
 }

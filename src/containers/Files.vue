@@ -1,6 +1,7 @@
 <template>
     <client-layout :title="$t('files.title')">
         <el-tabs
+            id="files-tabs"
             :value="activeType"
             @tab-click="onFilesStateUpdate({activeType: $event.name})"
         >
@@ -80,8 +81,15 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../design/theme/vars.scss";
     div[id^=pane-] {
-        height: calc(100vh - 237px)
+        height: calc(100vh - 216px);
+    }
+</style>
+
+<style lang="scss">
+    @import "../design/mixins/overrides";
+    #files-tabs {
+        @include overrideTabsStyles();
+        @include overrideDataTablesStyles();
     }
 </style>

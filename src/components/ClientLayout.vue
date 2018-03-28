@@ -67,10 +67,9 @@
     @import "../design/theme/vars";
 
     .client-title {
-        font-size: $fontSizePageTitle;
         color: $colorPageTitle;
         font-weight: bold;
-        margin: 0 0 15px;
+        margin: 0;
         font-size: $fontSizeLarge;
     }
 </style>

@@ -2,7 +2,7 @@
     <el-header id="header">
         <el-row type="flex" justify="space-between" align="middle">
             <el-row type="flex" align="middle">
-                <img :src="require('../../images/logo-white.png')" />
+                <img style="width: 150px" :src="require('../../images/logo.png')" />
             </el-row>
             <el-row type="flex" align="middle" justify="end" class="left-side">
                 <el-col :span="2">
@@ -40,11 +40,11 @@
                     <el-row type="flex" align="middle">
                         <el-row class="profile-avatar" />
                         <el-row style="width: 60%">
-                            <div class="profile-title ellipsis">
-                                {{firstName}} {{lastName}}
+                            <div class="ellipsis">
+                                <b >{{firstName}} {{lastName}}</b>
                             </div>
-                            <div class="profile-subtitle ellipsis">
-                                <small>{{jobTitle}}</small>
+                            <div class="ellipsis">
+                                <small><b>{{jobTitle}}</b></small>
                             </div>
                         </el-row>
                     </el-row>
@@ -108,13 +108,14 @@
             flex-grow: 1;
             .header-actions {
                 button {
-                    color: white;
+                    color: $colorTextRegular;
                     height: 59px;
                     padding: 0 15px;
                     border: 0;
                     border-radius: 0;
+
                     &:hover {
-                        background-color: rgb(46, 74, 103);
+                        color: $colorPrimary;
                     }
                 }
             }
@@ -126,31 +127,37 @@
                 height: $avatarHeight;
                 margin: 0 10px;
             }
-
-            .profile-title {
-                color: white;
-            }
-
-            .profile-subtitle {
-                color: lightgray;
-            }
         }
 
         .menu {
-            li.menu-item-icon {
+            .menu-item-icon {
                 width: $widthMenuItemIcon;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+
                 i {
                     font-size: x-large;
-                    color: lightgray;
+                    margin: 0;
                 }
-                &.is-active i {
-                    color: white;
-                }
-            }
 
-            li.is-active {
-                background-color: $colorPrimary !important;
-                border-bottom-color: $colorPrimary !important;
+                button {
+                    padding: 0;
+                    border-radius: 50%;
+                    width: $widthMenuItemIcon / 2;
+                    height: $widthMenuItemIcon / 2;
+                }
+
+                &.is-active {
+                    i {
+                        color: white;
+                    }
+                    button {
+                        background-color: $colorPrimary;
+                    }
+                    border-bottom-color: $colorPrimary !important;
+                }
             }
         }
     }

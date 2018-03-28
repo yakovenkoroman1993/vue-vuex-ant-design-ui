@@ -1,81 +1,81 @@
 <template>
     <div class="container">
-        <el-row type="flex" align="middle" justify="space-between">
-            <el-col :span="1">
-                <h3>{{$t('files.filters')}}</h3>
-            </el-col>
-            <el-col :span="2">
-                <a href="" @click.prevent="handleClearFiltersClick">
-                    {{$t('files.filtersClear')}}
-                </a>
-            </el-col>
-            <spacer size="100%" />
-            <app-dialog-shower
-                :dialog-name="DIALOGS_NAMES.FILES_UPLOAD"
-                :title="'+ ' + $t(`dialogs.${DIALOGS_NAMES.FILES_UPLOAD}.title`).toUpperCase()"
-            />
+        <el-row class="panel">
+            <el-row type="flex" align="middle" justify="space-between">
+                <el-col :span="1">
+                    <h3>{{$t('files.filters')}}</h3>
+                </el-col>
+                <el-col :span="2">
+                    <a href="" @click.prevent="handleClearFiltersClick">
+                        {{$t('files.filtersClear')}}
+                    </a>
+                </el-col>
+                <spacer size="100%" />
+                <app-dialog-shower
+                    :dialog-name="DIALOGS_NAMES.FILES_UPLOAD"
+                    :title="'+ ' + $t(`dialogs.${DIALOGS_NAMES.FILES_UPLOAD}.title`).toUpperCase()"
+                />
+            </el-row>
+            <el-row type="flex">
+                <el-col :span="3">
+                    <app-select
+                        :value="activeStatus"
+                        :options="statuses"
+                        placeholder="Status"
+                        labels-locale="files.statuses"
+                        @change="onFilesStateUpdate({activeStatus: $event})"
+                        clearable
+                    />
+                </el-col>
+                <el-col :span="3">
+                    <el-date-picker
+                        size="small"
+                        type="date"
+                        placeholder="Date"
+                    />
+                </el-col>
+                <el-col :span="3">
+                    <app-select
+                        :value="activeUploader"
+                        :options="uploaders"
+                        placeholder="Uploaded by"
+                        @change="onFilesStateUpdate({activeUploader: $event})"
+                        clearable
+                    />
+                </el-col>
+                <el-col :span="3">
+                    <app-select
+                        :value="activeTransport"
+                        :options="transports"
+                        placeholder="Transport"
+                        labels-locale="files.transports"
+                        @change="onFilesStateUpdate({activeTransport: $event})"
+                        clearable
+                    />
+                </el-col>
+                <el-col :span="3">
+                    <el-date-picker
+                        size="small"
+                        type="daterange"
+                        value-format="timestamp"
+                        :value="activeCreatedAtPeriod"
+                        :range-separator="$t('files.placeholders.periodDatePickerSeparator')"
+                        :start-placeholder="$t('files.placeholders.periodDatePickerStart')"
+                        :end-placeholder="$t('files.placeholders.periodDatePickerEnd')"
+                        @input="onFilesStateUpdate({activeCreatedAtPeriod: $event})"
+                    />
+                </el-col>
+            </el-row>
+            <br />
+            <el-row>
+                <el-checkbox
+                    :value="isShowFilesWithIssuesOnly"
+                    @change="onFilesStateUpdate({isShowFilesWithIssuesOnly: $event})"
+                >
+                    {{$t('files.checkboxes.isShowFilesWithIssuesOnly')}}
+                </el-checkbox>
+            </el-row>
         </el-row>
-
-        <el-row type="flex">
-            <el-col :span="3">
-                <app-select
-                    :value="activeStatus"
-                    :options="statuses"
-                    placeholder="Status"
-                    labels-locale="files.statuses"
-                    @change="onFilesStateUpdate({activeStatus: $event})"
-                    clearable
-                />
-            </el-col>
-            <el-col :span="3">
-                <el-date-picker
-                    size="small"
-                    type="date"
-                    placeholder="Date"
-                />
-            </el-col>
-            <el-col :span="3">
-                <app-select
-                    :value="activeUploader"
-                    :options="uploaders"
-                    placeholder="Uploaded by"
-                    @change="onFilesStateUpdate({activeUploader: $event})"
-                    clearable
-                />
-            </el-col>
-            <el-col :span="3">
-                <app-select
-                    :value="activeTransport"
-                    :options="transports"
-                    placeholder="Transport"
-                    labels-locale="files.transports"
-                    @change="onFilesStateUpdate({activeTransport: $event})"
-                    clearable
-                />
-            </el-col>
-            <el-col :span="3">
-                <el-date-picker
-                    size="small"
-                    type="daterange"
-                    value-format="timestamp"
-                    :value="activeCreatedAtPeriod"
-                    :range-separator="$t('files.placeholders.periodDatePickerSeparator')"
-                    :start-placeholder="$t('files.placeholders.periodDatePickerStart')"
-                    :end-placeholder="$t('files.placeholders.periodDatePickerEnd')"
-                    @input="onFilesStateUpdate({activeCreatedAtPeriod: $event})"
-                />
-            </el-col>
-        </el-row>
-        <br />
-        <el-row>
-            <el-checkbox
-                :value="isShowFilesWithIssuesOnly"
-                @change="onFilesStateUpdate({isShowFilesWithIssuesOnly: $event})"
-            >
-                {{$t('files.checkboxes.isShowFilesWithIssuesOnly')}}
-            </el-checkbox>
-        </el-row>
-        <br />
         <data-tables
             :table-props="tableOptions"
             :data="files"
@@ -140,7 +140,7 @@
                                 <el-dropdown-item>Download Original</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
-                        <a href="" class="table-row-link" @click.prevent>
+                        <a href="" @click.prevent>
                             <i class="el-icon-arrow-right" />
                         </a>
                     </el-row>
@@ -154,7 +154,6 @@
     import {DIALOGS_NAMES} from '../store/types/dialogs.types';
 
     export default {
-        name: 'files-data-table',
         data() {
             return {
                 tableOptions: {
@@ -162,8 +161,8 @@
                     border: false,
                 },
                 paginationOptions: {
-                    pageSize: 5,
-                    pageSizes: [5, 10, 15],
+                    pageSize: 10,
+                    pageSizes: [10, 20, 30],
                     currentPage: 1
                 },
                 dropdownActiveRow: null,
@@ -220,7 +219,6 @@
 <style lang="scss" scoped>
     @import "../design/theme/vars";
     @import "../design/customization/data-tables-pagination";
-    @import "../design/mixins/table";
 
     .container {
         height: 100%;
@@ -234,6 +232,8 @@
                 color: $colorWarning
             }
         }
-        @include tableStyle();
+        .panel {
+            padding: 0 $paddingHorizontalTopPanel 15px;
+        }
     }
 </style>

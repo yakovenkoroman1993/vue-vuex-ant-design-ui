@@ -17,3 +17,50 @@
     }
   }
 }
+
+@mixin overrideTabsStyles() {
+  .el-tabs__header {
+    padding: 0 $paddingHorizontalTopPanel !important;
+    background-color: $colorTopPanel;
+    margin: 0;
+  }
+}
+
+@mixin overrideDataTablesStyles() {
+  .el-table__body-wrapper {
+    tbody > tr > td:first-child {
+      padding-left: 15px;
+    }
+  }
+  .el-table__header-wrapper {
+    thead > tr > th {
+      background-color: $colorTableHeader;
+      color: $colorTableHeaderText;
+    }
+
+    thead > tr > th:first-child {
+      padding-left: 15px;
+    }
+  }
+  .el-pagination {
+    justify-content: flex-end;
+    display: flex;
+  }
+
+  /*Dropdown actions*/
+  .table-row-actions-dropdown {
+    button {
+      color: $colorTextRegular;
+      font-size: $fontSizeBase;
+      padding: 5px;
+      &.active-dropdown-button:focus {
+        background-color: $colorPrimary;
+        color: white;
+      }
+    }
+  }
+  a i {
+    color: $colorTextRegular;
+    font-size: $fontSizeLarger;
+  }
+}

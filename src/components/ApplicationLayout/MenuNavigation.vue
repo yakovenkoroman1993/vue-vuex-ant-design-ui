@@ -4,8 +4,11 @@
             class="menu"
             :default-active="activeRoute"
             :collapse="isCollapse"
+            text-color="white"
+            active-text-color="white"
         >
             <el-menu-item
+                class="menu-item"
                 v-for="{name, iconClassName} in menuItems"
                 :key="name"
                 :index="name"
@@ -17,6 +20,16 @@
                 </span>
             </el-menu-item>
         </el-menu>
+        <el-row
+            type="flex"
+            justify="center"
+            align="middle"
+            class="expander"
+            @click.native="isCollapse = !isCollapse"
+        >
+            <i v-if="isCollapse" class="el-icon-arrow-right" />
+            <i v-else class="el-icon-arrow-left" />
+        </el-row>
     </el-aside>
 </template>
 
@@ -34,7 +47,7 @@
                     name: ROUTES.CALENDAR,
                     iconClassName: 'el-icon-date',
                 }],
-                activeMenuItem: ROUTES.HOME
+                activeMenuItem: ROUTES.HOME,
             };
         },
         computed: {
@@ -43,12 +56,6 @@
             }
         },
         methods: {
-            handleOpen(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            handleClose(key, keyPath) {
-                console.log(key, keyPath);
-            },
             handleNavigate(routeName) {
                 this.$router.push({
                     name: routeName
@@ -60,14 +67,32 @@
 
 <style scoped lang="scss">
     @import "../../design/theme/vars";
+    $heightExpander: 56px;
 
     .menu {
-        height: 100%;
+        background-color: $colorAppNav;
+        height: calc(100% - #{$heightExpander});
+        border: 0;
+
+        .menu-item:hover {
+            background-color: $colorAppNavHover !important;
+        }
 
         .is-active {
             color: white;
-            background-color: $colorPrimary !important;
-            border-bottom-color: $colorPrimary !important;
+            background-color: $colorAppNavActive !important;
+        }
+    }
+
+    .expander {
+        height: $heightExpander;
+        background-color: $colorAppNav;
+        cursor: pointer;
+        i {
+            color: white;
+        }
+        &:hover {
+            background-color: $colorAppNavHover !important;
         }
     }
 </style>

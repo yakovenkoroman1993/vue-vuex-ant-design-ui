@@ -41,11 +41,7 @@
                 onAppStateUpdate: MUTATION_UPDATE
             }),
             ...mapMutations('dialogs', {
-                handleDialogOpen(commit) {
-                    commit(MUTATION_UPDATE, {
-                        [DIALOGS_NAMES.RETAILER_CHANGE]: true
-                    });
-                }
+                onDialogsStateUpdate: MUTATION_UPDATE
             }),
             handleClientSelect(activeRetailerId) {
                 this.onClientsStateUpdate({activeRetailerId});
@@ -56,7 +52,9 @@
             },
         },
         beforeMount() {
-            this.handleDialogOpen();
+            this.onDialogsStateUpdate({
+                [DIALOGS_NAMES.RETAILER_CHANGE]: true
+            });
         }
     }
 </script>

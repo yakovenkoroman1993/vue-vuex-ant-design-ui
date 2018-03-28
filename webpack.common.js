@@ -77,9 +77,9 @@ module.exports = {
             minChunks({ resource, context }) {
                 // This prevents stylesheet resources with the .css or .scss extension
                 // from being moved from their original chunk to the vendor chunk
-                if (resource && (/^.*\.(css|scss)$/).test(resource)) {
+                /*if (resource && (/^.*\.(css|scss)$/).test(resource)) {
                     return false;
-                }
+                }*/
 
                 return context && context.includes('node_modules');
             }
