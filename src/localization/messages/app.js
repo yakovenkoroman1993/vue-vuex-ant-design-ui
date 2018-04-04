@@ -13,6 +13,6 @@ export default {
         labels: {
             back: 'Back'
         },
-        footer: '©2018 The Nexxus Marketing Group, LLC. All Rights Reserved. All information displayed is confidential.'
+        footer: '©2018 Test Group, LLC. All Rights Reserved. All information displayed is confidential.'
     }
 };
