@@ -32,6 +32,7 @@
                 {{item.name}}
             </el-row>
         </virtual-list>
+
         <span slot="footer">
             <el-button v-if="!conserved" size="small" @click="handleDialogClose">
                 {{closeText}}
@@ -60,7 +61,9 @@
         props: {
             items: {
                 type: Array,
-                default: [],
+                default() {
+                    return [];
+                },
             },
             resolveEmptySelection: {
                 type: Boolean,
@@ -172,7 +175,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../design/theme/vars";
+    @import "../design/vars";
 
     .list {
         margin-top: 10px;

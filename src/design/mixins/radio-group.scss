@@ -1,4 +1,4 @@
-@import "../theme/vars";
+@import "../vars";
 
 @mixin verticalRadioGroupStyle($className: '.vertical-radio-group') {
   #{$className} {

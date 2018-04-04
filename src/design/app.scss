@@ -1,6 +1,7 @@
 @import "vars";
-@import "../mixins/colors";
-@import "../mixins/overrides";
+@import "mixins/colors";
+@import "mixins/grid";
+@import "mixins/overrides";
 
 body {
   background-color: #edeff0;
@@ -21,8 +22,9 @@ hr {
   border-bottom: 1px solid $borderColorLighter;
 }
 
-@include generateColorTextClasses();
+@include generateColorClasses();
 @include overrideDialogStyle();
+@include generateIntervalClasses();
 
 .ellipsis {
   text-overflow: ellipsis;
@@ -33,11 +35,4 @@ hr {
 
 .tooltip-icon {
   color: $colorInfo
-}
-
-.page-title {
-  font-size: $fontSizePageTitle;
-  color: $colorPageTitle;
-  font-weight: bold;
-  margin: 0;
 }

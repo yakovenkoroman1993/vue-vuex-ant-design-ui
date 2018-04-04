@@ -1,0 +1,20 @@
+@mixin generateIntervalClasses() {
+  @for $i from 3 through 20 {
+    .interval-horizontal-#{$i} {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      & > *:not(:last-child) {
+        margin-right: #{$i}px;
+      }
+    }
+    .interval-vertical-#{$i} {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      & > *:not(:last-child) {
+        margin-bottom: #{$i}px;
+      }
+    }
+  }
+}

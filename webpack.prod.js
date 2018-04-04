@@ -13,12 +13,31 @@ module.exports = merge(common, {
         filename: '[name].[chunkhash].js',
         chunkFilename: '[name].chunk.[chunkhash].js',
     },
+    module: {
+        rules: [{
+            enforce: 'pre',
+            test: /\.(js|vue)$/,
+            exclude: /node_modules/,
+            loader: 'eslint-loader',
+        }, {
+            test: /\.css$/,
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: {
+                    loader: 'css-loader',
+                    options: {
+                        minimize: true
+                    }
+                }
+            })
+        }]
+    },
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new webpack.DefinePlugin({
             'process.env': '"production"'
         }),
-        new ExtractTextPlugin('app.bundle.css'),
+        new ExtractTextPlugin('[name].[chunkhash].css'),
         new webpack.HashedModuleIdsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'manifest'

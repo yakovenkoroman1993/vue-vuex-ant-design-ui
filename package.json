@@ -1,17 +1,19 @@
 {
-  "name": "todo-list-vuex",
+  "name": "dio-module",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Roman Yakovenko",
+  "description": "DIO module",
+  "author": "Nexxus",
   "private": true,
   "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
+    "node": "8.10.0",
+    "npm": "5.6.0"
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
-    "lint": "eslint --ext .js,.vue src"
+    "build": "webpack --progress --config webpack.prod.js",
+    "serverbuild": "webpack --progress --config webpack.server.js",
+    "lint": "eslint --ext .js,.vue src",
+    "deploy:firebase": "npm run build && firebase login && firebase init && firebase deploy"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -21,7 +23,6 @@
     "lodash": "^4.17.5",
     "vue": "^2.5.2",
     "vue-data-tables": "^3.1.4",
-    "vue-fullcalendar": "^1.0.9",
     "vue-i18n": "^7.6.0",
     "vue-router": "^3.0.1",
     "vue-virtual-scroll-list": "^1.2.4",
@@ -43,10 +44,12 @@
     "compression-webpack-plugin": "^1.1.8",
     "config": "^1.29.4",
     "css-loader": "^0.28.0",
-    "eslint": "^4.18.1",
+    "eslint": "^4.19.1",
     "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.4.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
+    "firebase-tools": "^3.17.7",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.7.2",
@@ -55,6 +58,7 @@
     "style-loader": "^0.20.2",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
+    "vue-full-calendar": "^2.5.2",
     "vue-loader": "^14.2.1",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^3.11.0",

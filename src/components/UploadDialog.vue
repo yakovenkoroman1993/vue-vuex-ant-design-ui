@@ -69,7 +69,7 @@
                 type: String,
                 default() {
                     return this.closeText || (
-                        this.$t(`dialogs.actions.close`).toUpperCase()
+                        this.$t(`dialogs.actions.cancel `).toUpperCase()
                     );
                 }
             },
@@ -91,10 +91,12 @@
         },
         methods: {
             onError(event, file) {
-                // this.$notify.error({
-                //     title: 'Error',
-                //     message: this.$t(`dialogs.templates.uploadError`)
-                // });
+                this.$notify.error({
+                    title: 'Error',
+                    message: this.$t(`dialogs.templates.uploadError`, {
+                        fileName: file.name
+                    }).replace(/<[^>]+>/ig,'')
+                });
                 this.errorMessage = this.$t(`dialogs.templates.uploadError`, {
                     fileName: file.name
                 });

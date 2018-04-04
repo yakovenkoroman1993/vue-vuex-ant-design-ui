@@ -9,6 +9,10 @@ export default {
         headerActions: {
             changeClient: 'CHANGE CLIENT',
         },
+        client: 'Client',
+        labels: {
+            back: 'Back'
+        },
         footer: '©2018 The Nexxus Marketing Group, LLC. All Rights Reserved. All information displayed is confidential.'
     }
 };

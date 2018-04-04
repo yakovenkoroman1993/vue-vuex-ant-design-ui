@@ -13,7 +13,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import '../../design/theme/vars';
+    @import "../../design/vars";
 
     .footer {
         display: flex;

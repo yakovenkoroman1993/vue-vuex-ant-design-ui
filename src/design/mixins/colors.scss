@@ -1,4 +1,4 @@
-@import "../theme/vars";
+@import "../vars";
 
 $map: (
   "primary": $colorPrimary,
@@ -7,10 +7,13 @@ $map: (
   "info": $colorInfo,
 );
 
-@mixin generateColorTextClasses() {
+@mixin generateColorClasses() {
   @each $type, $color in $map {
     .color-text-#{$type} {
       color: $color !important;
+    },
+    .color-bg-#{$type} {
+      background-color: $color !important;
     }
   }
 }

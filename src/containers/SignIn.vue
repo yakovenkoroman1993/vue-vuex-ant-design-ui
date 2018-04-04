@@ -1,5 +1,5 @@
 <template>
-    <guest-layout>
+    <app-guest-layout>
         <el-row type="flex" id="logo">
             <el-col :span="12">
                 <img :src="require('./../images/logo.png')" />
@@ -80,7 +80,7 @@
                 </el-form>
             </div>
         </el-row>
-    </guest-layout>
+    </app-guest-layout>
 </template>
 
 <script>
@@ -158,7 +158,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../design/theme/vars";
+    @import "../design/vars";
 
     $informationHorizontalPadding: 100px;
     $informationWidth: 364px;
@@ -186,7 +186,7 @@
         min-height: calc(100vh - 600px);
     }
     #information {
-        background-color: $colorAppFooter;
+        background-color: #183253;
         color: white;
         padding: 0 $informationHorizontalPadding;
         width: $informationWidth;

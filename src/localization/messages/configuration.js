@@ -4,7 +4,6 @@ import {NOTIFICATIONS} from '../../helpers/notification.helper';
 export default {
     en: {
         title: 'Configuration',
-        client: 'Client',
         labels: {
             schedule: 'Schedule',
             transport: 'Server (transport) type',

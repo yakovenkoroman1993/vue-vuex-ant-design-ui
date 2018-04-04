@@ -17,6 +17,12 @@ module.exports = merge(common, {
         filename: '[name].bundle.js',
         chunkFilename: '[name].chunk.js',
     },
+    module: {
+      rules: [{
+          test: /\.css$/,
+          use: [ 'style-loader', 'css-loader' ]
+      }]
+    },
     devServer: {
         port,
         host,

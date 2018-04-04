@@ -12,46 +12,49 @@
                     :name="type"
                     :label="$t(`files.types.${type}`)"
                 >
-                    <div class="tab-pane-content" v-if="type === activeTab">
-                        <el-row type="flex" align="middle">
-                            <el-col :span="3">
+                    <el-form class="tab-pane-content" v-if="type === activeTab">
+                        <el-form-item>
+                            <el-col :span="3" :xs="20">
                                 <b>{{$t('configuration.labels.schedule')}}</b>
                             </el-col>
                             <el-switch
                                 :value="switches.schedule"
                                 @change="handleConfigurationStateUpdate({switches: {schedule: $event}})"
                             />
-                        </el-row>
+                        </el-form-item>
                         <el-collapse-transition>
-                            <el-form v-show="switches.schedule" class="section">
-                            <el-form-item>
-                                <el-row>
-                                    <el-col style="width: 8%">
-                                        <span>{{$t('configuration.labels.repeatEvery')}}</span>
-                                    </el-col>
-                                    <el-col :span="2">
-                                        <el-input-number
-                                            size="small"
-                                            :value="repeatNumber"
-                                            @change="handleConfigurationStateUpdate({repeatNumber: $event})"
-                                            :min="1"
-                                        />
-                                    </el-col>
-                                    <el-col :span="3">
-                                        <app-select
-                                            :value="activeScheduleType"
-                                            :options="scheduleTypes"
-                                            :placeholder="$t('configuration.placeholders.scheduleTypeSelect')"
-                                            labels-locale="configuration.scheduleTypes"
-                                            @change="handleConfigurationStateUpdate({activeScheduleType: $event})"
-                                            clearable
-                                        />
-                                    </el-col>
-                                </el-row>
-                            </el-form-item>
-                            <el-form-item>
-                                <el-row>
-                                    <el-col :span="5">
+                            <el-form-item v-show="switches.schedule" class="subsection">
+                                <el-form>
+                                    <el-form-item>
+                                        <el-row>
+                                            <el-col :span="2" :xs="12">
+                                                {{$t('configuration.labels.repeatEvery')}}
+                                            </el-col>
+                                            <el-col :span="6" :xs="12">
+                                                <el-form :inline="true">
+                                                    <el-form-item>
+                                                        <el-input-number
+                                                            size="small"
+                                                            :value="repeatNumber"
+                                                            @change="handleConfigurationStateUpdate({repeatNumber: $event})"
+                                                            :min="1"
+                                                        />
+                                                    </el-form-item>
+                                                    <el-form-item>
+                                                        <app-select
+                                                            :value="activeScheduleType"
+                                                            :options="scheduleTypes"
+                                                            :placeholder="$t('configuration.placeholders.scheduleTypeSelect')"
+                                                            labels-locale="configuration.scheduleTypes"
+                                                            @change="handleConfigurationStateUpdate({activeScheduleType: $event})"
+                                                            clearable
+                                                        />
+                                                    </el-form-item>
+                                                </el-form>
+                                            </el-col>
+                                        </el-row>
+                                    </el-form-item>
+                                    <el-form-item>
                                         <span>{{$t('configuration.labels.repeatOn')}}</span>
                                         <el-checkbox-group size="small" :value="activeRepeatDays">
                                             <el-checkbox-button
@@ -63,57 +66,57 @@
                                                 {{$t(`calendar.shortCalendarDays.${day}`)}}
                                             </el-checkbox-button>
                                         </el-checkbox-group>
-                                    </el-col>
-                                </el-row>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <span>{{$t('configuration.labels.scheduleEnds')}}</span>
+                                        <el-form :inline="true">
+                                            <el-form-item>
+                                                <el-radio-group
+                                                    :value="activeScheduleEndsOption"
+                                                    class="schedule-ends-radio-group"
+                                                >
+                                                    <el-radio
+                                                        v-for="option in scheduleEndsOptions"
+                                                        :key="option"
+                                                        :label="option"
+                                                        @change="handleConfigurationStateUpdate({activeScheduleEndsOption: option})"
+                                                    >
+                                                        {{$t(`configuration.scheduleEndsGroup.labels.${option}`)}}
+                                                    </el-radio>
+                                                </el-radio-group>
+                                            </el-form-item>
+                                            <el-form-item>
+                                                <spacer vertical size="45px" />
+                                                <el-date-picker
+                                                    :disabled="activeScheduleEndsOption !== scheduleEndsOptions[1]"
+                                                    :value="scheduleEndsOnDate"
+                                                    size="small"
+                                                    type="date"
+                                                    value-format="timestamp"
+                                                    placeholder="Date"
+                                                    @input="handleConfigurationStateUpdate({scheduleEndsOnDate: $event})"
+                                                />
+                                                <spacer vertical size="5px" />
+                                                <el-row>
+                                                    <el-input-number
+                                                        :disabled="activeScheduleEndsOption !== scheduleEndsOptions[2]"
+                                                        size="small"
+                                                        :value="occurrencesNumber"
+                                                        @change="handleConfigurationStateUpdate({occurrencesNumber: $event})"
+                                                        :min="1"
+                                                    />
+                                                    <spacer size="5px"/>
+                                                    {{$t('configuration.scheduleEndsGroup.labels.occurrences')}}
+                                                </el-row>
+                                            </el-form-item>
+                                        </el-form>
+                                    </el-form-item>
+                                </el-form>
                             </el-form-item>
-                            <el-form-item>
-                                <el-row>
-                                    {{$t('configuration.labels.scheduleEnds')}}
-                                </el-row>
-                                <el-row>
-                                    <el-col :span="1">
-                                        <el-radio-group
-                                            :value="activeScheduleEndsOption"
-                                            class="schedule-ends-radio-group"
-                                        >
-                                            <el-radio
-                                                v-for="option in scheduleEndsOptions"
-                                                :key="option"
-                                                :label="option"
-                                                @change="handleConfigurationStateUpdate({activeScheduleEndsOption: option})"
-                                            >
-                                                {{$t(`configuration.scheduleEndsGroup.labels.${option}`)}}
-                                            </el-radio>
-                                        </el-radio-group>
-                                    </el-col>
-                                    <el-col :span="3">
-                                        <spacer vertical :size="40" />
-                                        <el-date-picker
-                                            :disabled="activeScheduleEndsOption !== scheduleEndsOptions[1]"
-                                            :value="scheduleEndsOnDate"
-                                            size="small"
-                                            type="date"
-                                            value-format="timestamp"
-                                            placeholder="Date"
-                                            @input="handleConfigurationStateUpdate({scheduleEndsOnDate: $event})"
-                                        />
-
-                                        <el-input-number
-                                            :disabled="activeScheduleEndsOption !== scheduleEndsOptions[2]"
-                                            size="small"
-                                            :value="occurrencesNumber"
-                                            @change="handleConfigurationStateUpdate({occurrencesNumber: $event})"
-                                            :min="1"
-                                        />
-                                        {{$t('configuration.scheduleEndsGroup.labels.occurrences')}}
-                                    </el-col>
-                                </el-row>
-                            </el-form-item>
-                        </el-form>
                         </el-collapse-transition>
 
-                        <el-row type="flex" align="middle">
-                            <el-col :span="3">
+                        <el-form-item>
+                            <el-col :span="3" class="hidden-sm-and-down">
                                 <b>{{$t('configuration.labels.transport')}}</b>
                             </el-col>
                             <app-select
@@ -122,103 +125,63 @@
                                 @change="handleConfigurationStateUpdate({activeTransport: $event})"
                                 :placeholder="$t('files.placeholders.transportSelect')"
                                 labels-locale="files.transports"
-                            >
+                            />
+                        </el-form-item>
 
-                            </app-select>
-                        </el-row>
-
-                        <el-row type="flex" align="middle">
-                            <el-col :span="3">
+                        <el-form-item>
+                            <el-col :span="3" :xs="20">
                                 <b>{{$t('configuration.labels.fileSizeRange')}}</b>
                             </el-col>
                             <el-switch
                                 :value="switches.fileSizeRange"
                                 @change="handleConfigurationStateUpdate({switches: {fileSizeRange: $event}})"
                             />
-                        </el-row>
+                        </el-form-item>
                         <el-collapse-transition>
-                            <el-form v-show="switches.fileSizeRange" class="section">
-                            <el-form-item>
-                                <el-col :span="3">
-                                    <span>{{$t('configuration.labels.fileSize')}}</span>
-                                </el-col>
-                                <el-col :span="2">
-                                    <el-input-number
-                                        controls-position="right"
-                                        size="small"
-                                        :value="fileSizeRange[0]"
-                                        @change="handleConfigurationStateUpdate({fileSizeRange: [$event, fileSizeRange[1]]})"
-                                        :max="fileSizeRange[1]"
-                                    />
-                                </el-col>
-                                <el-col :span="2">
-                                    <el-slider
-                                        v-model="fileSizeRange"
-                                        :max="10"
-                                        range
-                                    />
-                                </el-col>
-                                <el-col :span="3">
-                                    <spacer :size="20" />
-                                    <el-input-number
-                                        controls-position="right"
-                                        size="small"
-                                        :value="fileSizeRange[1]"
-                                        @change="handleConfigurationStateUpdate({fileSizeRange: [fileSizeRange[0], $event]})"
-                                        :min="fileSizeRange[0]"
-                                    />
-                                </el-col>
+                            <el-form-item v-show="switches.fileSizeRange" class="subsection">
+                                <el-row type="flex" align="middle">
+                                    <el-col :span="3" :xs="5">
+                                        {{$t('configuration.labels.fileSize')}}
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <range-slider
+                                            :value="fileSizeRange"
+                                            :max="10"
+                                            @change="handleConfigurationStateUpdate({fileSizeRange: $event})"
+                                        />
+                                    </el-col>
+                                </el-row>
                             </el-form-item>
-                        </el-form>
                         </el-collapse-transition>
 
-                        <el-row type="flex" align="middle">
-                            <el-col :span="3">
+                        <el-form-item>
+                            <el-col :span="3" :xs="20">
                                 <b>{{$t('configuration.labels.filesRange')}}</b>
                             </el-col>
                             <el-switch
                                 :value="switches.filesRange"
                                 @change="handleConfigurationStateUpdate({switches: {filesRange: $event}})"
                             />
-                        </el-row>
+                        </el-form-item>
                         <el-collapse-transition>
-                            <el-form v-show="switches.filesRange" class="section">
-                            <el-form-item>
-                                <el-col :span="3">
-                                    <span>{{$t('configuration.labels.numberFilesPerPeriod')}}</span>
-                                </el-col>
-                                <el-col :span="2">
-                                    <el-input-number
-                                        controls-position="right"
-                                        size="small"
-                                        :value="filesRange[0]"
-                                        @change="handleConfigurationStateUpdate({filesRange: [$event, filesRange[1]]})"
-                                        :max="filesRange[1]"
-                                    />
-                                </el-col>
-                                <el-col :span="2">
-                                    <el-slider
-                                        v-model="filesRange"
-                                        :max="10"
-                                        range
-                                    />
-                                </el-col>
-                                <el-col :span="3">
-                                    <spacer :size="20" />
-                                    <el-input-number
-                                        controls-position="right"
-                                        size="small"
-                                        :value="filesRange[1]"
-                                        @change="handleConfigurationStateUpdate({filesRange: [filesRange[0], $event]})"
-                                        :min="filesRange[0]"
-                                    />
-                                </el-col>
+                            <el-form-item v-show="switches.filesRange" class="subsection">
+                                <el-row type="flex" align="middle">
+                                    <el-col :span="3" :xs="6">
+                                        {{$t('configuration.labels.numberFilesPerPeriod')}}
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <range-slider
+                                            :value="filesRange"
+                                            :max="10"
+                                            @change="handleConfigurationStateUpdate({filesRange: $event})"
+                                        />
+                                    </el-col>
+                                </el-row>
                             </el-form-item>
-                        </el-form>
                         </el-collapse-transition>
 
-                        <el-row type="flex" align="middle">
-                            <el-col :span="3">
+                        <el-form-item>
+                            <el-col :span="3" class="hidden-sm-and-down">
                                 <b>{{$t('configuration.labels.fileExtension')}}</b>
                             </el-col>
                             <app-select
@@ -228,32 +191,37 @@
                                 @change="handleConfigurationStateUpdate({activeFileExtension: $event})"
                                 clearable
                             />
-                        </el-row>
+                        </el-form-item>
 
-                        <el-row type="flex" align="middle">
-                            <el-col :span="3">
+                        <el-form-item>
+                            <el-col :span="3" :xs="20">
                                 <b>{{$t('configuration.labels.invalidDataLevel')}}</b>
                             </el-col>
                             <el-switch
                                 :value="switches.invalidDataLevel"
                                 @change="handleConfigurationStateUpdate({switches: {invalidDataLevel: $event}})"
                             />
-                        </el-row>
+                        </el-form-item>
                         <el-collapse-transition>
-                            <el-form v-show="switches.invalidDataLevel" class="section">
-                                <el-form-item>
-                                    <el-col :span="3">
-                                        <span>{{$t('configuration.labels.maxInvalidData')}}</span>
+                            <el-form-item v-show="switches.invalidDataLevel" class="subsection">
+                                <el-row type="flex" align="middle">
+                                    <el-col :span="3" :xs="5">
+                                        {{$t('configuration.labels.maxInvalidData')}}
                                     </el-col>
                                     <el-col :span="6">
-                                        <el-slider v-model="invalidDataLevel" show-input />
+                                        <el-slider
+                                            :value="invalidDataLevel"
+                                            @input="handleConfigurationStateUpdate({invalidDataLevel: $event})"
+                                            style="width: 400px"
+                                            show-input
+                                        />
                                     </el-col>
-                                </el-form-item>
-                            </el-form>
+                                </el-row>
+                            </el-form-item>
                         </el-collapse-transition>
 
-                        <el-row type="flex" align="middle">
-                            <el-col :span="3">
+                        <el-form-item>
+                            <el-col :span="3" :xs="20">
                                 <b>{{$t('configuration.labels.stopUpload')}}</b>
                                 <el-tooltip
                                     effect="dark"
@@ -269,8 +237,8 @@
                                 :value="isStopUploading"
                                 @change="handleConfigurationStateUpdate({isStopUploading: $event})"
                             />
-                        </el-row>
-                    </div>
+                        </el-form-item>
+                    </el-form>
                 </el-tab-pane>
             </el-tabs>
             <el-row id="actions">
@@ -288,10 +256,13 @@
 <script>
     import {mapMutations, mapState, mapGetters, mapActions} from 'vuex';
     import {MUTATION_UPDATE} from '../store/types';
-    import {mapStateWithMutation} from '../helpers/state.helper';
     import {save} from '../store/actions/configuration';
+    import RangeSlider from '../components/RangeSlider';
 
     export default {
+        components: {
+            RangeSlider,
+        },
         computed: {
             ...mapGetters('configuration', [
                 'activeRepeatDays',
@@ -303,19 +274,16 @@
                 'activeScheduleType',
                 'scheduleEndsOnDate',
                 'occurrencesNumber',
+                'invalidDataLevel',
                 'isStopUploading',
                 'activeTransport',
+                'fileSizeRange',
                 'scheduleTypes',
                 'repeatNumber',
+                'filesRange',
                 'transports',
                 'activeTab',
                 'switches',
-            ]),
-            // todo: after upgrade element-ui replace to simple mapState
-            ...mapStateWithMutation('configuration', MUTATION_UPDATE, [
-                'invalidDataLevel',
-                'fileSizeRange',
-                'filesRange',
             ]),
             ...mapState('files', [
                 'fileExtensions',
@@ -344,28 +312,29 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../design/theme/vars";
+    @import "../design/vars";
     @import "../design/mixins/radio-group";
 
     @include verticalRadioGroupStyle('.schedule-ends-radio-group')
 
-    b {
+    .container {
+        height: 100%;
+    }
+
+    b, .label {
         font-size: $fontSizeBase;
     }
 
     #tabs {
         flex: 1;
         .tab-pane-content {
-            padding: 0 $paddingHorizontalTopPanel;
-            & > .el-row {
-                height: 40px;
-            }
-            .section {
+            padding: 10px $paddingHorizontalTopPanel;
+            & > .el-form-item:not(.subsection) {
                 margin-bottom: 10px;
-                padding: 10px 0;
-                &.hidden {
-                    display: none;
-                }
+            }
+
+            .subsection {
+                margin-bottom: 15px;
             }
         }
     }
@@ -377,10 +346,6 @@
 
 <style lang="scss">
     @import "../design/mixins/overrides";
-
-    .container {
-        height: 100%;
-    }
 
     #tabs {
         @include overrideTabsStyles();

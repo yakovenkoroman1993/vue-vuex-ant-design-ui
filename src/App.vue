@@ -10,5 +10,5 @@
 
 
 <style lang="scss">
-    @import "design/theme/app";
+    @import "design/app";
 </style>

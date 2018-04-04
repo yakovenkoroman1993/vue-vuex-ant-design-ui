@@ -1,4 +1,4 @@
-@import "../theme/vars";
+@import "../vars";
 
 @mixin overrideDialogStyle() {
   .el-dialog {
@@ -45,20 +45,34 @@
   .el-pagination {
     justify-content: flex-end;
     display: flex;
-  }
+    button.btn-prev {
+      order: 1
+    }
 
-  /*Dropdown actions*/
-  .table-row-actions-dropdown {
-    button {
-      color: $colorTextRegular;
-      font-size: $fontSizeBase;
-      padding: 5px;
-      &.active-dropdown-button:focus {
-        background-color: $colorPrimary;
-        color: white;
-      }
+    .el-pager {
+      order: 2
+    }
+
+    button.btn-next {
+      order: 3
+    }
+
+    .el-pagination__jump {
+      order: 4
+    }
+
+    .el-pagination__sizes {
+      order: 5
+    }
+
+    .el-pagination__total {
+      order: 0;
+      flex: 1;
+      text-align: left;
+      margin-left: 10px;
     }
   }
+
   a i {
     color: $colorTextRegular;
     font-size: $fontSizeLarger;

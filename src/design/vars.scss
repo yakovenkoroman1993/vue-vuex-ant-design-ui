@@ -1,0 +1,67 @@
+/* App colors */
+/*$--color-primary;*/
+$colorPrimary: #2b92e9;
+
+/*$--color-warning*/
+$colorWarning: #e6a23c;
+
+//$colorInfo: $--color-info;
+$colorInfo: #909399;
+
+//$colorDanger: $--color-danger;
+$colorDanger: #f56c6c;
+
+//$colorHoverPrimary: $--color-primary-light-9;
+$colorHoverPrimary: mix(#fff, $colorPrimary, 90%) !default; /* ecf5ff */;
+
+//$colorFocusPrimary: $--color-primary-light-7;
+$colorFocusPrimary: mix(#fff, $colorPrimary, 70%) !default; /* c6e2ff */;
+
+$colorAppHeader: white;
+$colorAppFooter: #ecedf0;
+$colorAppNav: #1d2027;
+$colorAppNavActive: #585b61;
+$colorAppNavHover: #393c43;
+$colorPageTitle: #15171c;
+$colorTableHeader: #ddd;
+
+//$colorTextRegular: $--color-text-regular;
+$colorTextRegular: #606266;
+
+$colorTopPanel: #ecedf0;
+$colorTableHeaderText: #15171c;
+
+//$borderColorLighter: $--border-color-lighter;
+$borderColorLighter: #ebeef5;
+
+$paddingHorizontalTopPanel: 25px;
+
+/* App sizes */
+$heightHeader: 60px;
+$heightAvatar: 30px;
+$heightFooter: 60px;
+$heightTopPanel: 56px;
+
+$widthMenuItemIcon: 64px;
+
+/* Font sizes*/
+//$fontSizeBase: $--font-size-base;
+$fontSizeBase: 14px !default;
+
+//$fontSizeSmall: $--font-size-small;
+$fontSizeSmall: 13px !default;
+
+//$fontSizeLarge: $--font-size-large;
+$fontSizeLarge: 18px !default;
+
+$fontSizeLarger: 22px;
+$fontSizePageTitle: 36px;
+
+
+:export {
+  colorPrimary: $colorPrimary;
+  colorWarning: $colorWarning;
+  colorInfo: $colorInfo;
+  colorAppHeader: $colorAppHeader;
+  colorAppNav: $colorAppNav;
+}

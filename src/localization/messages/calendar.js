@@ -7,10 +7,9 @@ export default {
             periodNumber: 'Period'
         },
         periodNumberMeasures: {
-            [PERIOD_NUMBER_MEASURES.DAY]: 'Days',
-            [PERIOD_NUMBER_MEASURES.MONTH]: 'Months',
-            [PERIOD_NUMBER_MEASURES.WEEK]: 'Weeks',
-            [PERIOD_NUMBER_MEASURES.YEAR]: 'Years',
+            [PERIOD_NUMBER_MEASURES.DAY]: 'Day',
+            [PERIOD_NUMBER_MEASURES.MONTH]: 'Month',
+            [PERIOD_NUMBER_MEASURES.WEEK]: 'Week',
         },
         shortCalendarDays: {
             [CALENDAR_DAYS.SUNDAY]: 'S',

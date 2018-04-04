@@ -15,7 +15,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        publicPath: '/',
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
@@ -25,24 +25,21 @@ module.exports = {
         }
     },
     module: {
-        rules: [/*{
-            enforce: 'pre',
-            test: /\.(js|vue)$/,
-            exclude: /node_modules/,
-            loader: 'eslint-loader',
-        },*/ {
+        rules: [{
             test: /\.vue$/,
-            exclude: /node_modules/,
-            include: path.join(__dirname, 'src'),
+            exclude:   [
+                /node_modules\/(?!vue-full-calendar).*/
+            ],
+            include: [
+                path.join(__dirname, 'src'),
+                path.join(__dirname, '/node_modules/vue-full-calendar'),
+            ],
             use: 'vue-loader',
         }, {
             test: /\.js?$/,
             exclude: /node_modules/,
             include: path.join(__dirname, 'src'),
             use: 'babel-loader',
-        }, {
-            test: /\.css$/,
-            use: [ 'style-loader', 'css-loader' ]
         }, {
             test: /\.s[a|c]ss$/,
             use: [{
@@ -70,17 +67,17 @@ module.exports = {
         // see https://webpack.js.org/plugins/
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.html'),
+            // favicon: path.join(__dirname, 'src', 'favicon.ico'),
         }),
         new webpack.NormalModuleReplacementPlugin(/element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/, 'element-ui/lib/locale/lang/en'),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            minChunks({ resource, context }) {
+            minChunks({resource, context}) {
                 // This prevents stylesheet resources with the .css or .scss extension
                 // from being moved from their original chunk to the vendor chunk
-                /*if (resource && (/^.*\.(css|scss)$/).test(resource)) {
+                if (resource && (/^.*\.(css|scss)$/).test(resource)) {
                     return false;
-                }*/
-
+                }
                 return context && context.includes('node_modules');
             }
         }),

@@ -52,7 +52,14 @@
         },
         computed: {
             activeRoute() {
-                return this.$route.name;
+                let {name, meta} = this.$route;
+                if (meta.parent
+                    && !this.menuItems.find(it => it.name === name)
+                ) {
+                    name = this.$route.meta.parent;
+                }
+
+                return name;
             }
         },
         methods: {
@@ -66,7 +73,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../design/theme/vars";
+    @import "../../design/vars";
     $heightExpander: 56px;
 
     .menu {

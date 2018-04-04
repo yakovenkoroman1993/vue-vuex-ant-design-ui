@@ -1,8 +1,8 @@
 export const PERIOD_NUMBER_MEASURES = {
-    DAY: 'day',
-    WEEK: 'week',
+    DAY: 'basicDay',
+    WEEK: 'basicWeek',
     MONTH: 'month',
-    YEAR: 'year',
+    // YEAR: 'year',
 };
 
 export const CALENDAR_DAYS = {

@@ -217,8 +217,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../design/theme/vars";
-    @import "../design/customization/data-tables-pagination";
+    @import "../design/vars";
 
     .container {
         height: 100%;

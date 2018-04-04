@@ -1,6 +1,5 @@
 import Vue from 'vue';
-import ApplicationLayout from './ApplicationLayout/index';
-import ClientLayout from './ClientLayout';
+import ApplicationLayout from './ApplicationLayout/ApplicationLayout';
 import GuestLayout from './GuestLayout';
 import Spacer from './Spacer';
 import Select from './Select';
@@ -8,9 +7,8 @@ import UploadDialog from './UploadDialog';
 import DialogShower from './DialogShower';
 import ListDialog from './ListDialog';
 
-Vue.component('guest-layout', GuestLayout);
+Vue.component('app-guest-layout', GuestLayout);
 Vue.component('app-layout', ApplicationLayout);
-Vue.component('client-layout', ClientLayout);
 
 Vue.component('spacer', Spacer);
 Vue.component('app-select', Select);

@@ -22,7 +22,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../design/theme/vars";
+    @import "../design/vars";
 
     .container {
         background: url('../images/login-bg.jpg') no-repeat;

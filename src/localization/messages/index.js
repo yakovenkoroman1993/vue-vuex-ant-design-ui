@@ -8,6 +8,8 @@ import files from './files';
 import calendar from './calendar';
 import configuration from './configuration';
 import dialogs from './dialogs';
+import dataTable from './dataTable';
+import transactions from './transactions';
 
 function requireMessages(scope) {
     return _merge(
@@ -21,7 +23,9 @@ function requireMessages(scope) {
 
 export default requireMessages({
     configuration,
+    transactions,
     validation,
+    dataTable,
     calendar,
     dialogs,
     signIn,

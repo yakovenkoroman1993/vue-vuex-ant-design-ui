@@ -56,7 +56,7 @@
 
 <script>
     import {mapState} from 'vuex';
-    import styleVariables from '../../design/theme/vars.scss';
+    import styleVariables from '../../design/vars.scss';
     import {ROUTES} from '../../router/routes';
     import {DIALOGS_NAMES} from '../../store/types/dialogs.types';
     import _pick from 'lodash/pick';
@@ -99,10 +99,10 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../design/theme/vars";
+    @import "../../design/vars";
 
     #header {
-        height: $headerHeight !important;
+        height: $heightHeader !important;
         background-color: $colorAppHeader;
         .left-side {
             flex-grow: 1;
@@ -123,8 +123,8 @@
             .profile-avatar {
                 border-radius: 50%;
                 background-color: #edeff0;
-                width: $avatarHeight;
-                height: $avatarHeight;
+                width: $heightAvatar;
+                height: $heightAvatar;
                 margin: 0 10px;
             }
         }

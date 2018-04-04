@@ -4,6 +4,7 @@ import Files from '../containers/Files';
 import Calendar from '../containers/Calendar';
 import Configuration from '../containers/Configuration';
 import ClientSelection from '../containers/ClientSelection';
+import FileTransactions from '../containers/FileTransactions';
 
 export const ROUTES = {
     HOME: 'listView',
@@ -12,6 +13,7 @@ export const ROUTES = {
     PAGE_404: 'notFound',
     CONFIGURATION: 'configuration',
     CLIENT_SELECTION: 'clientSelection',
+    FILE_TRANSACTIONS: 'fileTransactions',
 };
 
 export default [
@@ -28,7 +30,15 @@ export default [
     {
         path: '/',
         name: ROUTES.HOME,
-        component: Files
+        component: Files,
+    },
+    {
+        path: '/files/:id',
+        name: ROUTES.FILE_TRANSACTIONS,
+        component: FileTransactions,
+        meta: {
+            parent: ROUTES.HOME
+        }
     },
     {
         path: '/calendar',

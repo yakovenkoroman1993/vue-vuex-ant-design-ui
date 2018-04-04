@@ -1,19 +1,19 @@
 export default {
     en: {
         title: 'Files',
-        filters: 'Filters',
-        filtersClear: 'Clear All',
         statuses: {
             valid: 'Valid',
             invalid: 'Invalid'
         },
+        tableActions: {
+            edit: 'Edit',
+            refresh: 'Refresh',
+            history: 'History',
+            downloadOriginal: 'Download original',
+        },
         placeholders: {
             transportSelect: 'Select file transport',
             fileExtensionSelect: 'Select file extension',
-            periodDatePickerSeparator: 'To',
-            periodDatePickerStart: 'Start date',
-            periodDatePickerEnd: 'End date',
-
         },
         types: {
             sales: 'Sales',
@@ -24,8 +24,8 @@ export default {
             sftp: 'SFTP',
             as2: 'AS2'
         },
-        checkboxes: {
-            isShowFilesWithIssuesOnly: 'Show files with issues only'
+        labels: {
+            showWithIssuesOnly: 'Show files with issues only'
         },
         tableHeaders: {
             status: 'Status',
@@ -35,7 +35,6 @@ export default {
             fileName: 'File name',
             uploader: 'Upload by',
             transport: 'Transport',
-            actions: 'Actions'
         }
-    }
+    },
 };
