@@ -1,8 +1,8 @@
 {
-  "name": "dio-module",
+  "name": "module",
   "version": "1.0.0",
-  "description": "DIO module",
-  "author": "Nexxus",
+  "description": "module",
+  "author": "ryakovenko",
   "private": true,
   "engines": {
     "node": "8.10.0",
@@ -11,7 +11,6 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --progress --config webpack.prod.js",
-    "serverbuild": "webpack --progress --config webpack.server.js",
     "lint": "eslint --ext .js,.vue src",
     "deploy:firebase": "npm run build && firebase login && firebase init && firebase deploy"
   },
