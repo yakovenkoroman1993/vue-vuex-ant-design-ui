@@ -1,4 +1,4 @@
-# NEXXUS PORTAL UI
+# PORTAL UI
 
 > A Vue.js project + Vuex (FLUX architecture)
 
@@ -24,7 +24,7 @@ https://console.firebase.google.com
 
 **1.1** Sign in using your Gmail account.
 
-**1.2** Add project as **nexxus-portal-ui**.
+**1.2** Add project as **test-portal-ui**.
 
 **2** In your console in the root directory of UI-project execute a command:
 ```
@@ -51,7 +51,7 @@ After you see a label "Firebase CLI Login Successful"
 
 **Question:** Select a default Firebase project for this directory:
 
-**Answer:** "nexxus-portal-ui" and press "Enter"
+**Answer:** "test-portal-ui" and press "Enter"
 
 **Question:** What do you want to use as your public directory?
 
@@ -69,7 +69,7 @@ After you see a label "Firebase CLI Login Successful"
 Next, wait for the deploy processing...
 
 **3** Great, now UI is accessible approximately by the URL 
-https://nexxus-portal-ui-<ID>.firebaseapp.com
+https://test-portal-ui-<ID>.firebaseapp.com
 
 _Note! ID in URL depends on every deploy._
 
